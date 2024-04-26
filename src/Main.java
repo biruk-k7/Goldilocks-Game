@@ -10,6 +10,9 @@ import java.util.Random;
 import java.awt.event.*;
 import java.lang.Math.*;
 import java.net.Socket;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 
 public class Main extends JPanel implements KeyListener, MouseListener{
 
@@ -22,8 +25,10 @@ public class Main extends JPanel implements KeyListener, MouseListener{
     public static final int GAME_WIDTH = 10000;
     public static final int GAME_HEIGHT = 10000;
 
-    public static final int WIDTH = 1920;
-    public static final int HEIGHT = 1080;
+    public static Dimension screenDimension; 
+
+    public static int WIDTH;
+    public static int HEIGHT;
     public static final int FPS = 60;
 
 
@@ -31,6 +36,13 @@ public class Main extends JPanel implements KeyListener, MouseListener{
     Game steveGame;
 
     public Main(){
+
+        screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
+
+        WIDTH = (int)screenDimension.getWidth();
+        HEIGHT = (int)screenDimension.getHeight();
+        System.out.println(WIDTH);
+        System.out.println(HEIGHT);
         //constructor for main 
         steveGame = new Game();
 
@@ -193,7 +205,7 @@ class Game{
         //gameY = World.HEIGHT/2;
 
         steve = new Player(0, 0);
-        cam = new Camera(new Pair(-WIDTH/2+25,-HEIGHT/2+25));
+        cam = new Camera(new Pair(-Main.WIDTH/2,-Main.HEIGHT/2));
        
 
         //testing planeto
