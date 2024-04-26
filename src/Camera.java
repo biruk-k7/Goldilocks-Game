@@ -1,6 +1,6 @@
 public class Camera implements Movable{
 
-    Pair position, velocity;
+    public Pair position, velocity;
 
 
     public Camera(Pair pos){
