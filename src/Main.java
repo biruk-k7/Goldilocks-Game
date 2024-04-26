@@ -250,6 +250,7 @@ class Game{
         //System.out.println(steve.getX() + " " + steve.getY());
         //draw the player
         steve.draw(g);
+        steve.drawFuelCapacity(g);
         testPlanet.draw(g);
         drawPlanets(g);
         

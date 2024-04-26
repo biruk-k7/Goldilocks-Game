@@ -11,7 +11,7 @@ public abstract class Character{
         alive = true;
         pos = new Pair();
         vel = new Pair();
-        accel=new Pair();
+        accel = new Pair();
     }
 
     public abstract void draw(Graphics g);

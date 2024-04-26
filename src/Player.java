@@ -11,6 +11,8 @@ public class Player extends Character implements Movable{
     private Pair position = new Pair();
     private Pair velocity = new Pair();
     private Image image;
+    private int fuelCapacity;
+    private int spaceshipLevel;
 
     public Player(double initX, double initY){
 
@@ -21,6 +23,25 @@ public class Player extends Character implements Movable{
         velocity.y = 0;
         image = new ImageIcon("spaceship.png").getImage();
         image = image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+        this.fuelCapacity = 10;
+        this.spaceshipLevel = 1; 
+    }
+
+    public int getFuel(){
+        return fuelCapacity;
+    }
+
+    public void updateFuel(boolean isOnPlanet, int fuelDrain){
+        this.fuelCapacity -= fuelDrain;
+    }
+
+    public int getSpaceshipLevel(){
+        return spaceshipLevel;
+    }
+
+    public void upgradeSpaceship(){
+        spaceshipLevel++;
+        this.fuelCapacity += 5;
     }
 
     public double getX(){
@@ -40,9 +61,18 @@ public class Player extends Character implements Movable{
     
         g.drawImage(image, (int)position.x, (int)position.y, null);
         g.drawRect((int)position.x-125, (int)position.y-125, 300, 300);
-
         g.drawRect((int)position.x-125, (int)position.y-125, 300, 300);
 
+    }
+
+    public void drawFuelCapacity(Graphics g){
+        g.setColor(Color.RED);
+        g.fillRoundRect((int)position.x - 800, (int)position.y- 500, fuelCapacity*10, 31, 15, 15);
+        g.setColor(Color.GREEN);
+        g.fillRoundRect((int)position.x - 800, (int)position.y- 500, fuelCapacity*10, 31, 15, 15);
+        g.setColor(Color.white);
+        g.drawString("Fuel", (int)position.x - 790, (int)position.y- 450);
+        
     }
 
     public void move(int dir){

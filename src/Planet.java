@@ -12,8 +12,6 @@ public class Planet{
 
         double[][] noiseMap = new double[2*testPlanet.radius + 3][2*testPlanet.radius + 3];
 
-        
-
         for(int i =0; i < noiseMap.length ; i++){
             for(int j=0; j< noiseMap.length; j++){
                 noiseMap[i][j] = testPlanet.noise(i, j);
