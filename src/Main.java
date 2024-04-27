@@ -181,7 +181,7 @@ public class Main extends JPanel implements KeyListener, MouseListener{
         g2d.setColor(Color.BLACK);
         g2d.fillRect(-50000, -50000, 100000, 100000);
         steveGame.background.drawBackground(g);
-        steveGame.drawPlayers(g);
+        steveGame.drawPlayers(g );
         
     }
 }

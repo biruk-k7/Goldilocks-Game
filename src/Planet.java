@@ -59,7 +59,7 @@ public class Planet{
         this.circularNoise();
     }
 
-    
+
     public double[][] getNoiseMap(){
         return noiseMap;
     }
@@ -248,16 +248,78 @@ class Goldilocks extends Planet{
 class StarterPlanet extends Planet {
 
     private Image starterPlanet;
+    private Image cloud1;
+    private Image cloud2;
+    private Image bench;
+    private  int cloudX1 = -350;
+    private  int cloudX2 = -100;
+    private int velocityX = 1;
+    private int velocityX2 = -1;
 
     public StarterPlanet(){
         super(10);
         starterPlanet = new ImageIcon("assets\\StarterPlanet\\planet.png").getImage();
         starterPlanet = starterPlanet.getScaledInstance(500, 500, Image.SCALE_DEFAULT);
+        
+        cloud1 = new ImageIcon("assets\\StarterPlanet\\cloud1.png").getImage();
+        cloud1 = cloud1.getScaledInstance(300, 200, Image.SCALE_DEFAULT);
+
+        cloud2 = new ImageIcon("assets\\StarterPlanet\\cloud2.png").getImage();
+        cloud2 = cloud2.getScaledInstance(600, 500, Image.SCALE_DEFAULT);
+
+        bench = new ImageIcon("assets\\StarterPlanet\\bench.png").getImage();
+        bench = bench.getScaledInstance(150, 100, Image.SCALE_DEFAULT);
     }
 
     public void drawStarterPlanet(Graphics g){
         g.drawImage(starterPlanet,-250 ,-250, null);
+        g.drawImage(bench, -75, -290, null);
+        animateCloud(g); 
     }
+
+    public void animateCloud(Graphics g){
+
+        // Moving cloud 1 to the right until it collides with a certain point
+
+        if(velocityX > 0){
+            if (cloudX1 < -100) {
+                cloudX1 += velocityX;
+                g.drawImage(cloud2, cloudX1, -230, null);
+            } else {
+                velocityX = -velocityX;
+                g.drawImage(cloud2, cloudX1 - 1, -230, null);
+            }
+        }else if(velocityX < 0){
+            if (cloudX1 > -500) {
+                cloudX1 += velocityX;
+                g.drawImage(cloud2, cloudX1, -230, null);
+            } else {
+                velocityX = -velocityX;
+                g.drawImage(cloud2, cloudX1 + 1, -230, null);
+            }
+        }
+        
+    }
+
+    public void animateCloud2(Graphics g){
+        if(velocityX2 > 0){
+            if (cloudX2 < -50) {
+                cloudX2 += velocityX2;
+                g.drawImage(cloud1, cloudX2, 0, null);
+            } else {
+                velocityX2 = -velocityX2;
+            }
+        }else if(velocityX2 < 0){
+            if (cloudX2 > -400) {
+                cloudX2+= velocityX2;
+                g.drawImage(cloud1, cloudX2, 0, null);
+            } else {
+                velocityX2 = -velocityX2;
+            }
+        }
+    }
+
+
 
     
     
