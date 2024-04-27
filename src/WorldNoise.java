@@ -10,20 +10,20 @@ public class WorldNoise {
         this.noise = new double[(int) size.x / 100 ][(int) size.y / 100 ];
     }
 
-    // public static void main(String[] args){
+    public static void main(String[] args){
 
-    //     WorldNoise worldNoise = new WorldNoise(new Pair(5,5), new Pair(0,0));
+        WorldNoise worldNoise = new WorldNoise(new Pair(5,5), new Pair(0,0));
 
-    //     worldNoise.generateNoise();
+        worldNoise.generateNoise();
 
-    //     for(int i = 0; i < worldNoise.noise.length; i++){
-    //         for(int j = 0; j < worldNoise.noise.length; j++){
-    //             System.out.print(worldNoise.noise[i][j]);
-    //         }
-    //         System.out.println();
-    //     }
+        for(int i = 0; i < worldNoise.noise.length; i++){
+            for(int j = 0; j < worldNoise.noise.length; j++){
+                System.out.print(worldNoise.noise[i][j]);
+            }
+            System.out.println();
+        }
 
-    // }
+    }
 
     public void generateNoise(){
         
@@ -39,6 +39,10 @@ public class WorldNoise {
 
     public boolean checkForPlanet(int i, int j){
         return(noise[i][j] > 0.9);
+    }
+
+    public boolean checkOverlap(int i, int j){
+         return (noise[i][j] > 0.9);
     }
 
 }

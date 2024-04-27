@@ -2,6 +2,8 @@
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 public class Planet{
 
@@ -47,18 +49,17 @@ public class Planet{
 
         noiseMap = new double[2*this.radius + 5][2*this.radius + 5];
 
-        
-
         for(int i =0; i < noiseMap.length ; i++){
             for(int j=0; j< noiseMap.length; j++){
                 noiseMap[i][j] = this.noise(i, j);
-                
             }
             
         }
 
         this.circularNoise();
     }
+
+    
     public double[][] getNoiseMap(){
         return noiseMap;
     }
@@ -243,4 +244,23 @@ class Goldilocks extends Planet{
     }
 
 }
+
+class StarterPlanet extends Planet {
+
+    private Image starterPlanet;
+
+    public StarterPlanet(){
+        super(10);
+        starterPlanet = new ImageIcon("assets\\StarterPlanet\\planet.png").getImage();
+        starterPlanet = starterPlanet.getScaledInstance(500, 500, Image.SCALE_DEFAULT);
+    }
+
+    public void drawStarterPlanet(Graphics g){
+        g.drawImage(starterPlanet,-250 ,-250, null);
+    }
+
+    
+    
+}
+
 

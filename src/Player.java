@@ -60,9 +60,9 @@ public class Player extends Character implements Movable{
 
         g.setColor(Color.GREEN);
         
-        g.drawImage(image, (int)position.x, (int)position.y, null);
-        g.drawRect((int)position.x-125, (int)position.y-125, 300, 300);
-        g.drawRect((int)position.x-125, (int)position.y-125, 300, 300);
+        g.drawImage(image, (int)position.x - 25, (int)position.y - 25, null);
+        g.drawRect((int)position.x-150, (int)position.y-150, 300, 300);
+        g.drawRect((int)position.x-150, (int)position.y-150, 300, 300);
 
     }
 

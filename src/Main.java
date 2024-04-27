@@ -201,6 +201,7 @@ class Game{
     public Camera cam;
     public WorldNoise worldNoise;
     public Background background;
+    public StarterPlanet starterPlanet;
     public Planet[][] planets = new Planet[100][100];
     
 
@@ -215,6 +216,8 @@ class Game{
 
         //testing planeto
         testPlanet = new Planet(17);
+
+        starterPlanet = new StarterPlanet();
 
         testPlanet.setPos(new Pair(-300,-300));
     
@@ -259,9 +262,10 @@ class Game{
     public void drawPlayers(Graphics g){
         //System.out.println(steve.getX() + " " + steve.getY());
         //draw the player
-        steve.draw(g);
-        testPlanet.draw(g);
+        //testPlanet.draw(g);
         drawPlanets(g);
+        starterPlanet.drawStarterPlanet(g);
+        steve.draw(g);
         steve.drawFuelCapacity(g);
     }
 
@@ -269,12 +273,12 @@ class Game{
 
         for(int i = 0; i < worldNoise.noise.length; i++){
             for(int j = 0; j < worldNoise.noise.length; j++){
-                if(worldNoise.checkForPlanet(i, j)){
+                if(worldNoise.checkOverlap(i, j)){
                     planets[i][j].draw(g);
                 }
-                else if(worldNoise.noise[i][j] < -0.95){
-                    background.drawStars(g, i*50, j*50);
-                }
+                // else if(worldNoise.noise[i][j] < -0.95){
+                //     background.drawStars(g, i*50, j*50);
+                // }
             }
         }
 
