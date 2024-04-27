@@ -85,22 +85,25 @@ public class Main extends JPanel implements KeyListener, MouseListener{
         char c = e.getKeyChar();
 
         //handle player and camera movemnet with key inputs
-        switch (c) {
-            case 'w':
-                steveGame.steve.move(0);
-                steveGame.cam.move(0);
-                break;
-            case 'a':
-                steveGame.steve.move(1);
-                steveGame.cam.move(1);
-                break;
-            case 's':
-                steveGame.steve.move(2);
-                steveGame.cam.move(2);
-                break;
-            case 'd':
-                steveGame.steve.move(3);
-                steveGame.cam.move(3);
+
+        if(steveGame.steve.getFuel() > 1){
+            switch (c) {
+                case 'w':
+                    steveGame.steve.move(0);
+                    steveGame.cam.move(0);
+                    break;
+                case 'a':
+                    steveGame.steve.move(1);
+                    steveGame.cam.move(1);
+                    break;
+                case 's':
+                    steveGame.steve.move(2);
+                    steveGame.cam.move(2);
+                    break;
+                case 'd':
+                    steveGame.steve.move(3);
+                    steveGame.cam.move(3);
+            }
         }
 
         
@@ -212,9 +215,7 @@ class Game{
         testPlanet = new Planet(17);
 
         testPlanet.setPos(new Pair(-300,-300));
-        
-
-
+    
         //draw planeto
 
         this.worldNoise = new WorldNoise(new Pair(10000,10000), new Pair(0,0));
@@ -244,16 +245,23 @@ class Game{
     public void updateGame(double time){
         steve.update(this, time);
         cam.update(this, time);
+
+        if(steve.getFuel() <= 1){
+            cam.velocity.x = 0;
+            cam.velocity.y = 0;
+            steve.vel.x = 0;
+            steve.vel.y = 0;
+        }
+        
     }
 
     public void drawPlayers(Graphics g){
         //System.out.println(steve.getX() + " " + steve.getY());
         //draw the player
         steve.draw(g);
-        steve.drawFuelCapacity(g);
         testPlanet.draw(g);
         drawPlanets(g);
-        
+        steve.drawFuelCapacity(g);
     }
 
     public void drawPlanets(Graphics g){

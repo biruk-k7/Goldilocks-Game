@@ -17,6 +17,8 @@ public class Camera implements Movable{
     }
 
    public void move(int dir){
+
+    
         switch (dir){
             case 0:
                 
@@ -32,6 +34,7 @@ public class Camera implements Movable{
                 velocity.x=100;
                 
         }
+    
     }
 
         public void stopMove(int dir){
