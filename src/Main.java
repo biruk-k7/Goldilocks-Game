@@ -180,6 +180,7 @@ public class Main extends JPanel implements KeyListener, MouseListener{
         //"infinite" world
         g2d.setColor(Color.BLACK);
         g2d.fillRect(-50000, -50000, 100000, 100000);
+        steveGame.background.drawBackground(g);
         steveGame.drawPlayers(g);
         
     }
@@ -222,7 +223,7 @@ class Game{
         this.worldNoise = new WorldNoise(new Pair(10000,10000), new Pair(0,0));
         worldNoise.generateNoise();
 
-      
+        background = new Background(10000, 10000);
 
         for(int i = 0; i < worldNoise.noise.length; i++){
             for(int j = 0; j < worldNoise.noise.length; j++){

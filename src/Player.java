@@ -58,10 +58,8 @@ public class Player extends Character implements Movable{
     public void draw(Graphics g){
         //method to draw the player
 
-        
         g.setColor(Color.GREEN);
         
-    
         g.drawImage(image, (int)position.x, (int)position.y, null);
         g.drawRect((int)position.x-125, (int)position.y-125, 300, 300);
         g.drawRect((int)position.x-125, (int)position.y-125, 300, 300);
