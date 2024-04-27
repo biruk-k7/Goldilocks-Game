@@ -199,6 +199,7 @@ class Game{
 
     public Camera cam;
     public WorldNoise worldNoise;
+    public Background background;
     public Planet[][] planets = new Planet[100][100];
     
 
