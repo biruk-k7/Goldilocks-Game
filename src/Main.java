@@ -240,7 +240,6 @@ class Game{
                 }
             }
         }
-
         
     }
 
@@ -272,6 +271,9 @@ class Game{
             for(int j = 0; j < worldNoise.noise.length; j++){
                 if(worldNoise.checkForPlanet(i, j)){
                     planets[i][j].draw(g);
+                }
+                else if(worldNoise.noise[i][j] < -0.95){
+                    background.drawStars(g, i*50, j*50);
                 }
             }
         }
