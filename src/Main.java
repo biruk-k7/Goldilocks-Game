@@ -73,7 +73,7 @@ public class Main extends JPanel implements KeyListener, MouseListener{
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e){
                 for (int i =1; i<=Planet.getNumPlanets(); i++){
-                    File file = new File("./assets/Planets/planet"+i+".png");
+                    File file = new File("./assets/planets/planet"+i+".png");
                     file.delete();
             
                 }
