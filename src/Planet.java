@@ -165,7 +165,7 @@ public class Planet{
                 }
             }
         }
-        File file = new File("./planets/planet" +countPlanets +".png");
+        File file = new File("./assets/Planets/planet" +countPlanets +".png");
         ImageIO.write(img, "png", file);
 
 
