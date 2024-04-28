@@ -90,7 +90,7 @@ public class Player extends Character implements Movable{
 
         if(currentFuel <= 1){
             g.setColor(Color.RED);
-            g.drawString("OUT OF FUEL", (int)position.x - 40, (int)position.y);
+            g.drawString("OUT OF FUEL", (int)position.x - 65, (int)position.y - 30);
         }
         
     }
