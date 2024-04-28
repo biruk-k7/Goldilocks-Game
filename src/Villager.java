@@ -5,6 +5,10 @@ import java.awt.Graphics2D;
 import java.util.Random;
 import javax.swing.JPanel;
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
@@ -17,16 +21,17 @@ public class Villager extends JPanel {
     public Image villager;
     public boolean prompt = false;
     public Font font;
+    public BufferedImage img;
 
-
-    public Villager(Pair position){
+    public Villager(Pair position) throws IOException{
 
         Random rand = new Random();
 
         this.position = position;
         position.y = -160;
         this.velocity = new Pair(20, 0);
-        villager = new ImageIcon("assets\\StarterPlanet\\villager.png").getImage();
+        File file = new File("./assets/StarterPlanet/villager.png");
+        villager = ImageIO.read(file);
         villager = villager.getScaledInstance(70, 70, Image.SCALE_DEFAULT);
 
         String fontFile = "GameFont.ttf";
