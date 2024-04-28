@@ -16,6 +16,8 @@ public class Player extends Character implements Movable{
     private double currentFuel;
     private int spaceshipLevel;
 
+    private boolean isSpaceship = false;
+
     public Player(double initX, double initY){
 
         super();
@@ -59,10 +61,12 @@ public class Player extends Character implements Movable{
         //method to draw the player
 
         g.setColor(Color.GREEN);
-        
-        g.drawImage(image, (int)position.x - 25, (int)position.y - 25, null);
-        g.drawRect((int)position.x-150, (int)position.y-150, 300, 300);
-        g.drawRect((int)position.x-150, (int)position.y-150, 300, 300);
+
+        if(isSpaceship){
+            g.drawImage(image, (int)position.x - 25, (int)position.y - 25, null);
+            g.drawRect((int)position.x-150, (int)position.y-150, 300, 300);
+            g.drawRect((int)position.x-150, (int)position.y-150, 300, 300);
+        }
 
     }
 
@@ -95,7 +99,7 @@ public class Player extends Character implements Movable{
 
             switch (dir){
                 case 0:
-                    System.out.println("steve's moving");
+                    //System.out.println("steve's moving");
                     velocity.y=-100;
                     break;
                 case 1:
@@ -114,7 +118,7 @@ public class Player extends Character implements Movable{
         public void stopMove(int dir){
         switch (dir){
             case 0:
-                System.out.println("steve's moving");
+                //System.out.println("steve's moving");
                 velocity.y=0;
                 break;
             case 1:
@@ -129,14 +133,50 @@ public class Player extends Character implements Movable{
     }
 
     public void update(Game g, double time){
-        
+
+        if(isOnPlanet(g)){
+            isSpaceship = false;
+        }else{
+            isSpaceship = true;
+        }
+
         position = position.add(velocity.times(time));
         
         if(Math.pow(velocity.x, 2) + Math.pow(velocity.y,2) > 0){
             currentFuel -= 0.01;
         }
 
-        System.out.println(position.x + " " + position.y);
+    }
+
+    public boolean isOnPlanet(Game g){
+        // for loop to check all planets
+        // our own position
+        // planet position + radius calculation
+
+        // for(int i = 0; i < g.planets.length; i++){
+        //     for(int j = 0; j < g.planets.length; j++){
+               
+        //             double distance = distanceToPlanet(g.planets[i][j].getCenter().x, g.planets[i][j].getCenter().y);
+        //             System.out.println(distance);
+        //             System.out.println(g.planets[i][j].radius);
+        //             if (distance < g.planets[i][j].getRadius()){
+
+        //                 System.out.println("true");
+        //                 return true;
+                       
+        //             }
+                
+        //     }
+        // }
+
+
+        return false;
+    }
+
+    private double distanceToPlanet(double x2, double y2){
+
+        return Math.sqrt(Math.pow(this.position.x - x2, 2) + Math.pow(this.position.y - y2, 2));
+
     }
 
 

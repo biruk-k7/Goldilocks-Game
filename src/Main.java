@@ -195,6 +195,7 @@ class Game{
     public static int gameX, gameY;
     public Player steve;
     public Planet testPlanet;
+    public Villager villager;
 
 
     public static final int renderDistance=2000;
@@ -212,6 +213,7 @@ class Game{
         //gameY = World.HEIGHT/2;
 
         steve = new Player(0, 0);
+        villager = new Villager(new Pair(0,0));
         cam = new Camera(new Pair(-Main.WIDTH/2,-Main.HEIGHT/2));
        
 
@@ -242,14 +244,15 @@ class Game{
                     planets[i][j] = new Planet(10+rand.nextInt(15));
                     planets[i][j].setPos(new Pair(multiplier*i*50, multiplier2*j*50));
                 }else{
-                    planets[i][j] = new Planet(0);
+                    
                 }
                 //System.out.print(worldNoise.noise[i][j]);
             }
             //System.out.println();
         }
 
-        
+        // I'm trying to figure out how to make it so that the planets don't overlap and
+        // don't spawn in the center
         // for(int i = 1; i < planets.length; i++){
         //     for(int j = 1; j < planets.length; j++){
 
@@ -270,18 +273,14 @@ class Game{
         //         double distanceFromSpawn = Math.sqrt(Math.pow(center1.x - 0, 2) + Math.pow(center1.y - 0, 2));
 
         //         if( distanceFromSpawn < 600){planets[i][j] = null; System.out.println("PLANET BEGONE");}
-
         //     }
-
-
-
         //     }
         // }
-        
-        
+           
     }
 
     public void updateGame(double time){
+        villager.updateAI(this, time);
         steve.update(this, time);
         cam.update(this, time);
 
@@ -300,6 +299,7 @@ class Game{
         //testPlanet.draw(g);
         drawPlanets(g);
         starterPlanet.drawStarterPlanet(g);
+        villager.draw(g);
         steve.draw(g);
         steve.drawFuelCapacity(g);
     }

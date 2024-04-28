@@ -33,7 +33,7 @@ public class Planet{
 
     }
 
-    protected int radius;
+    public int radius;
     protected Pair pos;
     protected Pair vel;
     protected Pair accel;
@@ -250,7 +250,7 @@ class StarterPlanet extends Planet {
     private Image starterPlanet;
     private Image cloud1;
     private Image cloud2;
-    private Image bench;
+    private Image castle;
     private  int cloudX1 = -350;
     private  int cloudX2 = -100;
     private int velocityX = 1;
@@ -267,13 +267,14 @@ class StarterPlanet extends Planet {
         cloud2 = new ImageIcon("assets\\StarterPlanet\\cloud2.png").getImage();
         cloud2 = cloud2.getScaledInstance(600, 500, Image.SCALE_DEFAULT);
 
-        bench = new ImageIcon("assets\\StarterPlanet\\bench.png").getImage();
-        bench = bench.getScaledInstance(150, 100, Image.SCALE_DEFAULT);
+        castle = new ImageIcon("assets\\StarterPlanet\\castle.png").getImage();
+        castle = castle.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+
     }
 
     public void drawStarterPlanet(Graphics g){
+        g.drawImage(castle, -105, -400, null);
         g.drawImage(starterPlanet,-250 ,-250, null);
-        g.drawImage(bench, -75, -290, null);
         animateCloud(g); 
     }
 
@@ -284,18 +285,18 @@ class StarterPlanet extends Planet {
         if(velocityX > 0){
             if (cloudX1 < -100) {
                 cloudX1 += velocityX;
-                g.drawImage(cloud2, cloudX1, -230, null);
+                g.drawImage(cloud2, cloudX1, -150, null);
             } else {
                 velocityX = -velocityX;
-                g.drawImage(cloud2, cloudX1 - 1, -230, null);
+                g.drawImage(cloud2, cloudX1 - 1, -150, null);
             }
         }else if(velocityX < 0){
             if (cloudX1 > -500) {
                 cloudX1 += velocityX;
-                g.drawImage(cloud2, cloudX1, -230, null);
+                g.drawImage(cloud2, cloudX1, -150, null);
             } else {
                 velocityX = -velocityX;
-                g.drawImage(cloud2, cloudX1 + 1, -230, null);
+                g.drawImage(cloud2, cloudX1 + 1, -150, null);
             }
         }
         
