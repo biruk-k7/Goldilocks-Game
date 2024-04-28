@@ -107,18 +107,22 @@ public class Main extends JPanel implements KeyListener, MouseListener{
                 case 'w':
                     steveGame.steve.move(0);
                     steveGame.cam.move(0);
+                    steveGame.rotate=0;
                     break;
                 case 'a':
                     steveGame.steve.move(1);
                     steveGame.cam.move(1);
+                    steveGame.rotate=-90;
                     break;
                 case 's':
                     steveGame.steve.move(2);
                     steveGame.cam.move(2);
+                    steveGame.rotate=180;
                     break;
                 case 'd':
                     steveGame.steve.move(3);
                     steveGame.cam.move(3);
+                    steveGame.rotate=90;
             }
         }
 
@@ -215,6 +219,7 @@ class Game{
     public Player steve;
     public Planet testPlanet;
     public Villager villager;
+    public int rotate=0;
 
 
     public static final int renderDistance=2000;
@@ -318,9 +323,12 @@ class Game{
         //testPlanet.draw(g);
         drawPlanets(g);
         starterPlanet.drawStarterPlanet(g);
-        villager.draw(g);
-        steve.draw(g);
         steve.drawFuelCapacity(g);
+        villager.draw(g);
+        Graphics2D g2d= (Graphics2D)g;
+        g2d.rotate(Math.toRadians(rotate),steve.getX(),steve.getY());
+       
+        steve.draw(g2d);
     }
 
     public void drawPlanets(Graphics g){
