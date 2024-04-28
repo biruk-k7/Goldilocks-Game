@@ -72,9 +72,9 @@ public class Player extends Character implements Movable{
 
     public void drawFuelCapacity(Graphics g){
         g.setColor(Color.RED);
-        g.fillRoundRect((int)position.x - Game.WIDTH/2+200, (int)position.y- Game.HEIGHT/2+125, (int)fuelCapacity*10, 31, 15, 15);
+        g.fillRoundRect((int)position.x - Main.WIDTH/2+20, (int)position.y- Main.HEIGHT/2+20, (int)fuelCapacity*10, 31, 15, 15);
         g.setColor(Color.GREEN);
-        g.fillRoundRect((int)position.x - Game.WIDTH/2+200, (int)position.y- Game.HEIGHT/2+125, (int)currentFuel*10, 31, 15, 15);
+        g.fillRoundRect((int)position.x - Main.WIDTH/2+20, (int)position.y- Main.HEIGHT/2+20, (int)currentFuel*10, 31, 15, 15);
         g.setColor(Color.white);
 
         String fontFile = "GameFont.ttf";
@@ -86,7 +86,7 @@ public class Player extends Character implements Movable{
             customFont = new Font("Arial", Font.PLAIN, 50); 
         }
         g.setFont(customFont);
-        g.drawString("FUEL", (int)position.x - Game.WIDTH/2+200, (int)position.y-Game.HEIGHT/2+175);
+        g.drawString("FUEL", (int)position.x - Main.WIDTH/2+20, (int)position.y-Main.HEIGHT/2+70);
 
         if(currentFuel <= 1){
             g.setColor(Color.RED);
