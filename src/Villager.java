@@ -10,7 +10,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
-class Villager extends JPanel {
+public class Villager extends JPanel {
 
     public Pair position;
     public Pair velocity;
