@@ -140,6 +140,8 @@ public class Player extends Character implements Movable{
             isSpaceship = true;
         }
 
+
+
         position = position.add(velocity.times(time));
         
         if(Math.pow(velocity.x, 2) + Math.pow(velocity.y,2) > 0){

@@ -1,3 +1,5 @@
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Random;
@@ -13,15 +15,28 @@ class Villager extends JPanel {
     public Pair position;
     public Pair velocity;
     public Image villager;
+    public boolean prompt = false;
+    public Font font;
+
 
     public Villager(Pair position){
 
         Random rand = new Random();
 
         this.position = position;
+        position.y = -160;
         this.velocity = new Pair(20, 0);
         villager = new ImageIcon("assets\\StarterPlanet\\villager.png").getImage();
         villager = villager.getScaledInstance(70, 70, Image.SCALE_DEFAULT);
+
+        String fontFile = "GameFont.ttf";
+        
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, new java.io.File(fontFile)).deriveFont((float) 12);
+
+        } catch (Exception e) {
+            font = new Font("Arial", Font.PLAIN, 25); 
+        }
         
     }
 
@@ -57,12 +72,41 @@ class Villager extends JPanel {
                 flipImage();
             }
         }
+
+        double posPlayerX = g.steve.getX();
+        double posPlayerY = g.steve.getY();
+        double distanceToPlayer = Math.sqrt(Math.pow(posPlayerX - position.x, 2) + Math.pow(posPlayerY - position.y, 2));
+        // System.out.println(distanceToPlayer);
+        // System.out.println(posPlayerX + " " + position.x);
+        // System.out.println(posPlayerY + " " + position.y);
+
+        if(distanceToPlayer < 80){
+            // System.out.println("bruh");
+            // System.out.println(distanceToPlayer);
+            prompt = true;
+        }else{
+            prompt = false;
+        }
        
         
     }
 
     public void draw(Graphics g){
-        g.drawImage(villager, (int)position.x, -200, null);
+        g.drawImage(villager, (int)position.x - 40, (int)position.y - 40, null);
+        g.setFont(font);
+
+        if(prompt){
+            g.setColor(Color.black);
+            g.fillRoundRect((int) position.x + 20, (int) position.y - 10, 80, 50, 10, 10);
+            g.setColor(Color.white);
+            g.fillRoundRect((int) position.x + 23, (int) position.y - 8, 75, 45, 10, 10);
+            g.setColor(Color.black);
+            g.drawString("Hello", (int) position.x + 27, (int) position.y + 10);
+            g.drawString("Young One",(int) position.x + 27, (int) position.y + 30);
+           
+        }
+
+
     }
 
     
