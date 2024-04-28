@@ -46,6 +46,7 @@ public class Planet{
     protected double[][] noiseMap;
     protected int planetType;
     private static int countPlanets = 0;
+    private Image texture;
 
     public Planet(int initRadius){
         pos = new Pair();
@@ -167,23 +168,15 @@ public class Planet{
         }
         File file = new File("./assets/planets/planet" +countPlanets +".png");
         ImageIO.write(img, "png", file);
+        texture = ImageIO.read(file);
+        
 
 
     }
 
     public void draw(Graphics g){
-        for(int i=0; i<noiseMap.length;i++){
-            for(int j =0; j<noiseMap.length;j++){
-                if(noiseMap[i][j]!=0){
 
-         
-
-                    g.setColor(planetColorScheme(noiseMap[i][j]));
-                    g.fillRect((int)pos.x+i*8, (int)pos.y+j*8, 8, 8);
-
-                }
-            }
-        }
+        g.drawImage(texture, (int)(texture.getWidth(null)/2+pos.x), (int)(texture.getHeight(null)/2+pos.y), null);
     }
 
     public Color planetColorScheme(double alpha){
