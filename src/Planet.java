@@ -176,7 +176,7 @@ public class Planet{
 
     public void draw(Graphics g){
 
-        g.drawImage(texture, (int)(texture.getWidth(null)/2+pos.x), (int)(texture.getHeight(null)/2+pos.y), null);
+        g.drawImage(texture, (int)(pos.x), (int)(pos.y), null);
     }
 
     public Color planetColorScheme(double alpha){
