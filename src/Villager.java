@@ -26,7 +26,7 @@ public class Villager extends JPanel {
         this.position = position;
         position.y = -160;
         this.velocity = new Pair(20, 0);
-        villager = new ImageIcon("assets\\StarterPlanet\\villager.png").getImage();
+        villager = new ImageIcon("./assets/StarterPlanet/villager.png").getImage();
         villager = villager.getScaledInstance(70, 70, Image.SCALE_DEFAULT);
 
         String fontFile = "GameFont.ttf";

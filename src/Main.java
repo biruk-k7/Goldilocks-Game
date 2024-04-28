@@ -6,7 +6,8 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.io.File;
-import java.awt.Font; 
+import java.awt.Font;
+import java.util.ArrayList;
 import java.util.Random;
 import java.awt.event.*;
 import java.lang.Math.*;
@@ -61,7 +62,7 @@ public class Main extends JPanel implements KeyListener, MouseListener{
     public static void main(String[] args){
 
         //basic game setup
-        JFrame frame = new JFrame("Space Steve Adventure World");
+        JFrame frame = new JFrame("Space Adventure World");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Main mainGame = new Main();
         frame.setContentPane(mainGame);
@@ -228,7 +229,7 @@ class Game{
     public WorldNoise worldNoise;
     public Background background;
     public StarterPlanet starterPlanet;
-    public Planet[][] planets = new Planet[100][100];
+    public ArrayList<Planet> planets;
     
 
     public Game(){
@@ -239,7 +240,7 @@ class Game{
         steve = new Player(0, 0);
         villager = new Villager(new Pair(0,0));
         cam = new Camera(new Pair(-Main.WIDTH/2,-Main.HEIGHT/2));
-       
+        planets = new ArrayList<Planet>();
 
         //testing planeto
         testPlanet = new Planet(17);
@@ -265,8 +266,9 @@ class Game{
                     Random rand2 = new Random();
                     int randomNumber2 = rand2.nextInt(2);
                     int multiplier2 = (randomNumber2 == 0) ? -1 : 1;
-                    planets[i][j] = new Planet(10+rand.nextInt(15));
-                    planets[i][j].setPos(new Pair(multiplier*i*50, multiplier2*j*50));
+                    Planet toadd = new Planet(10+rand.nextInt(15));
+                    toadd.setPos(new Pair(multiplier*i*50, multiplier2*j*50));
+                    planets.add(toadd);
                 }else{
                     
                 }
@@ -333,12 +335,8 @@ class Game{
 
     public void drawPlanets(Graphics g){
 
-        for(int i = 0; i < planets.length; i++){
-            for(int j = 0; j < planets.length; j++){
-                if(planets[i][j] != null){
-                    planets[i][j].draw(g);
-                }
-            }
+        for(Planet s:planets){
+            s.draw(g);
         }
 
     }
