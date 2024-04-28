@@ -164,7 +164,7 @@ public class Main extends JPanel implements KeyListener, MouseListener{
     	char c = e.getKeyChar();
     }
     
-    //not quite sure what this does
+    
     public void addNotify() {
         super.addNotify();
         requestFocus();
@@ -233,24 +233,21 @@ class Game{
     
 
     public Game(){
-        //set dimensions and add player
-        //gameX = World.WIDTH/2;
-        //gameY = World.HEIGHT/2;
+      
 
         steve = new Player(0, 0);
         villager = new Villager(new Pair(0,0));
         cam = new Camera(new Pair(-Main.WIDTH/2,-Main.HEIGHT/2));
         planets = new ArrayList<Planet>();
 
-        //testing planeto
+        //testing planet
         testPlanet = new Planet(17);
 
         starterPlanet = new StarterPlanet();
 
         testPlanet.setPos(new Pair(-300,-300));
     
-        //draw planeto
-
+       
         this.worldNoise = new WorldNoise(new Pair(10000,10000), new Pair(0,0));
         worldNoise.generateNoise();
 
@@ -259,7 +256,6 @@ class Game{
         for(int i = 0; i < worldNoise.noise.length; i++){
             for(int j = 0; j < worldNoise.noise.length; j++){
                 if(worldNoise.checkForPlanet(i, j)){
-                    //System.out.println(worldNoise.noise[i][j]);
                     Random rand = new Random();
                     int randomNumber = rand.nextInt(2);
                     int multiplier = (randomNumber == 0) ? -1 : 1;
@@ -269,39 +265,13 @@ class Game{
                     Planet toadd = new Planet(10+rand.nextInt(15));
                     toadd.setPos(new Pair(multiplier*i*50, multiplier2*j*50));
                     planets.add(toadd);
-                }else{
-                    
                 }
-                //System.out.print(worldNoise.noise[i][j]);
+               
             }
-            //System.out.println();
+           
         }
 
-        // I'm trying to figure out how to make it so that the planets don't overlap and
-        // don't spawn in the center
-        // for(int i = 1; i < planets.length; i++){
-        //     for(int j = 1; j < planets.length; j++){
-
-        //         if(planets[i-1][j-1] != null){
-
-        //         int radius1 = planets[i][j].getRadius();
-        //         int radius2 = planets[i-1][j-1].getRadius();
-
-        //         Pair center1 = planets[i][j].getCenter();
-        //         Pair center2 = planets[i-1][j-1].getCenter();
-
-        //         double distance = Math.sqrt(Math.pow(center2.x - center1.x, 2) + Math.pow(center2.y - center1.y, 2));
-
-        //         if(distance < radius1 + radius2 ){
-        //             planets[i][j] = null;
-        //         }
-
-        //         double distanceFromSpawn = Math.sqrt(Math.pow(center1.x - 0, 2) + Math.pow(center1.y - 0, 2));
-
-        //         if( distanceFromSpawn < 600){planets[i][j] = null; System.out.println("PLANET BEGONE");}
-        //     }
-        //     }
-        // }
+      
            
     }
 
@@ -320,9 +290,7 @@ class Game{
     }
 
     public void drawPlayers(Graphics g){
-        //System.out.println(steve.getX() + " " + steve.getY());
-        //draw the player
-        //testPlanet.draw(g);
+      
         drawPlanets(g);
         starterPlanet.drawStarterPlanet(g);
         steve.drawFuelCapacity(g);
@@ -341,13 +309,6 @@ class Game{
 
     }
 
-    public void getWidth(){
-        //return width;
-    }
-
-    public void getHeight(){
-        //return height;
-    }
-
+ 
    
 }
