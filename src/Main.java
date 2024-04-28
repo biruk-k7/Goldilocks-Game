@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
+import java.io.File;
 import java.awt.Font; 
 import java.util.Random;
 import java.awt.event.*;
@@ -51,6 +52,10 @@ public class Main extends JPanel implements KeyListener, MouseListener{
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         Thread mainThread = new Thread(new Runner());
         mainThread.start();
+        
+
+        
+    
     }
 
     public static void main(String[] args){
@@ -63,6 +68,17 @@ public class Main extends JPanel implements KeyListener, MouseListener{
         frame.setBackground(Color.BLACK);
         frame.pack();
         frame.setVisible(true);
+
+        //https://stackoverflow.com/questions/10468149/jframe-on-close-operation helped us with clearing files on close
+        frame.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e){
+                for (int i =1; i<=Planet.getNumPlanets(); i++){
+                    File file = new File("./planets/planet"+i+".png");
+                    file.delete();
+            
+                }
+            }
+        });
     }
 
     class Runner implements Runnable{
@@ -184,6 +200,9 @@ public class Main extends JPanel implements KeyListener, MouseListener{
         steveGame.drawPlayers(g );
         
     }
+
+   
+    
 }
 
 class Game{

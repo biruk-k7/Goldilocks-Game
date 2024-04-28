@@ -2,7 +2,13 @@
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 public class Planet{
@@ -12,7 +18,7 @@ public class Planet{
         Planet testPlanet = new Planet(7);
         testPlanet.setPos(new Pair(500,500));
 
-        double[][] noiseMap = new double[2*testPlanet.radius + 3][2*testPlanet.radius + 3];
+        double[][] noiseMap = new double[2*testPlanet.radius + 1][2*testPlanet.radius + 1];
 
         for(int i =0; i < noiseMap.length ; i++){
             for(int j=0; j< noiseMap.length; j++){
@@ -39,6 +45,7 @@ public class Planet{
     protected Pair accel;
     protected double[][] noiseMap;
     protected int planetType;
+    private static int countPlanets = 0;
 
     public Planet(int initRadius){
         pos = new Pair();
@@ -47,7 +54,7 @@ public class Planet{
         radius = initRadius;
         planetType=(int)(Math.random()*6);
 
-        noiseMap = new double[2*this.radius + 5][2*this.radius + 5];
+        noiseMap = new double[2*this.radius + 1][2*this.radius + 1];
 
         for(int i =0; i < noiseMap.length ; i++){
             for(int j=0; j< noiseMap.length; j++){
@@ -57,8 +64,17 @@ public class Planet{
         }
 
         this.circularNoise();
+        countPlanets++;
+        try {
+            makePNGfile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    public static int getNumPlanets(){
+        return countPlanets;
+    }
 
     public double[][] getNoiseMap(){
         return noiseMap;
@@ -134,12 +150,37 @@ public class Planet{
 
     }
 
+    private void makePNGfile() throws IOException{
+        BufferedImage img = new BufferedImage(noiseMap.length*8, noiseMap.length*8, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2d = img.createGraphics();
+        for(int i=0; i<noiseMap.length;i++){
+            for(int j =0; j<noiseMap.length;j++){
+                if(noiseMap[i][j]!=0){
+
+
+                    g2d.setColor(planetColorScheme(noiseMap[i][j]));
+                    g2d.fillRect((int)pos.x+i*8, (int)pos.y+j*8, 8, 8);
+
+                    
+                }
+            }
+        }
+        File file = new File("./planets/planet" +countPlanets +".png");
+        ImageIO.write(img, "png", file);
+
+
+    }
+
     public void draw(Graphics g){
         for(int i=0; i<noiseMap.length;i++){
             for(int j =0; j<noiseMap.length;j++){
                 if(noiseMap[i][j]!=0){
+
+         
+
                     g.setColor(planetColorScheme(noiseMap[i][j]));
                     g.fillRect((int)pos.x+i*8, (int)pos.y+j*8, 8, 8);
+
                 }
             }
         }
