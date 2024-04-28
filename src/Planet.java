@@ -152,7 +152,7 @@ public class Planet{
     }
 
     private void makePNGfile() throws IOException{
-        BufferedImage img = new BufferedImage(noiseMap.length*8, noiseMap.length*8, BufferedImage.TYPE_INT_RGB);
+        BufferedImage img = new BufferedImage(noiseMap.length*8, noiseMap.length*8, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = img.createGraphics();
         for(int i=0; i<noiseMap.length;i++){
             for(int j =0; j<noiseMap.length;j++){
