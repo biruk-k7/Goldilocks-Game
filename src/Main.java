@@ -191,6 +191,7 @@ class Game{
 
     public static final int WIDTH = 1920;
     public static final int HEIGHT = 1080;
+    public int spawnRadius = 600;
     public static int gameX, gameY;
     public Player steve;
     public Planet testPlanet;
@@ -240,9 +241,43 @@ class Game{
                     int multiplier2 = (randomNumber2 == 0) ? -1 : 1;
                     planets[i][j] = new Planet(10+rand.nextInt(15));
                     planets[i][j].setPos(new Pair(multiplier*i*50, multiplier2*j*50));
+                }else{
+                    planets[i][j] = new Planet(0);
                 }
+                //System.out.print(worldNoise.noise[i][j]);
             }
+            //System.out.println();
         }
+
+        
+        // for(int i = 1; i < planets.length; i++){
+        //     for(int j = 1; j < planets.length; j++){
+
+        //         if(planets[i-1][j-1] != null){
+
+        //         int radius1 = planets[i][j].getRadius();
+        //         int radius2 = planets[i-1][j-1].getRadius();
+
+        //         Pair center1 = planets[i][j].getCenter();
+        //         Pair center2 = planets[i-1][j-1].getCenter();
+
+        //         double distance = Math.sqrt(Math.pow(center2.x - center1.x, 2) + Math.pow(center2.y - center1.y, 2));
+
+        //         if(distance < radius1 + radius2 ){
+        //             planets[i][j] = null;
+        //         }
+
+        //         double distanceFromSpawn = Math.sqrt(Math.pow(center1.x - 0, 2) + Math.pow(center1.y - 0, 2));
+
+        //         if( distanceFromSpawn < 600){planets[i][j] = null; System.out.println("PLANET BEGONE");}
+
+        //     }
+
+
+
+        //     }
+        // }
+        
         
     }
 
@@ -271,14 +306,11 @@ class Game{
 
     public void drawPlanets(Graphics g){
 
-        for(int i = 0; i < worldNoise.noise.length; i++){
-            for(int j = 0; j < worldNoise.noise.length; j++){
-                if(worldNoise.checkOverlap(i, j)){
+        for(int i = 0; i < planets.length; i++){
+            for(int j = 0; j < planets.length; j++){
+                if(planets[i][j] != null){
                     planets[i][j].draw(g);
                 }
-                // else if(worldNoise.noise[i][j] < -0.95){
-                //     background.drawStars(g, i*50, j*50);
-                // }
             }
         }
 
