@@ -122,8 +122,8 @@ public class Planet{
 
     //https://stackoverflow.com/questions/335600/collision-detection-between-two-images-in-java helped resolve this 
     public boolean checkPlanetOverlap(Planet a){
-        if(a.getCenter().x<500&&a.getCenter().x>-500 &&a.getCenter().y<500&&a.getCenter().y>-500) return true;
-        return this.bounds.intersects(a.getBounds());
+        
+        return this.bounds.intersects(a.getBounds()) || new Rectangle(-250,-250, 500,500).intersects(a.getBounds());
     }
 
     public double noise(int i, int j){
@@ -310,7 +310,7 @@ class StarterPlanet extends Planet {
     private int velocityX2 = -1;
 
     public StarterPlanet(){
-        super(250);
+        super(10);
         starterPlanet = new ImageIcon("assets\\StarterPlanet\\planet.png").getImage();
         starterPlanet = starterPlanet.getScaledInstance(500, 500, Image.SCALE_DEFAULT);
         
