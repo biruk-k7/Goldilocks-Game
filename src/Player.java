@@ -17,7 +17,7 @@ public class Player extends Character implements Movable{
     private int spaceshipLevel;
 
     private boolean isSpaceship = false;
-
+ 
     public Player(double initX, double initY){
 
         super();
@@ -30,6 +30,8 @@ public class Player extends Character implements Movable{
         this.fuelCapacity = 10;
         this.currentFuel = 10;
         this.spaceshipLevel = 1; 
+
+
     }
 
     public double getFuel(){
@@ -69,6 +71,7 @@ public class Player extends Character implements Movable{
         }
 
     }
+
 
     public void drawFuelCapacity(Graphics g){
         g.setColor(Color.RED);
@@ -209,4 +212,14 @@ public class Player extends Character implements Movable{
 
    
 
+}
+
+class Bullet{
+    Pair position;
+    Pair velocity;
+    public Bullet(double x, double y){
+        position =  new Pair(x, y);
+        
+        
+    }
 }
