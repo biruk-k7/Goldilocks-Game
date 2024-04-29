@@ -327,6 +327,7 @@ class StarterPlanet extends Planet {
 
     public void drawStarterPlanet(Graphics g){
         g.drawImage(castle, -105, -400, null);
+        
         g.drawImage(starterPlanet,-250 ,-250, null);
         animateCloud(g); 
     }

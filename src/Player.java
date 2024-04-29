@@ -226,7 +226,7 @@ class Bullet{
     final int direction;
     
     public Bullet(double x, double y, int d){
-        position =  new Pair(x, y);
+        position =  new Pair(x-5, y-5);
         velocity= new Pair(200,200);
         direction=d;
     
