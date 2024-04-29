@@ -125,9 +125,10 @@ public class Main extends JPanel implements KeyListener, MouseListener{
                     steveGame.cam.move(3);
                     steveGame.rotate=90;
                     break;
+                    
                 case ' ':
                     steveGame.steve.addBullet(steveGame.rotate);
-                    break;
+                   
             }
         }
 
