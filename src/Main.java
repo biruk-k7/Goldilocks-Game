@@ -262,18 +262,34 @@ class Game{
                     Random rand2 = new Random();
                     int randomNumber2 = rand2.nextInt(2);
                     int multiplier2 = (randomNumber2 == 0) ? -1 : 1;
-                    Planet toadd = new Planet(10+rand.nextInt(15));
-                    toadd.setPos(new Pair(multiplier*i*50, multiplier2*j*50));
-                    planets.add(toadd);
+                    Planet toAdd = new Planet(10+rand.nextInt(15));
+                    toAdd.setPos(new Pair(multiplier*i*50, multiplier2*j*50));
+                    while (checkTotalOverlap(toAdd)){
+                        toAdd.pos.x+=toAdd.getRadius();
+                        toAdd.pos.y+=toAdd.getRadius();
+                        System.out.println("while loop");
+                    }
+
+                    planets.add(toAdd);
                 }
                
             }
            
         }
-
       
-           
     }
+
+    public boolean checkTotalOverlap(Planet a){
+        for (Planet p:planets){
+            if(starterPlanet.checkPlanetOverlap(a)) return true;
+            if (p.checkPlanetOverlap(a)){
+                return true; 
+            }
+        }
+        return false;
+    }
+
+
 
     public void updateGame(double time){
         villager.updateAI(this, time);

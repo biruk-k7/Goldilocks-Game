@@ -47,6 +47,7 @@ public class Planet{
     protected int planetType;
     private static int countPlanets = 0;
     private Image texture;
+   
 
     public Planet(int initRadius){
         pos = new Pair();
@@ -54,6 +55,7 @@ public class Planet{
         accel=new Pair();
         radius = initRadius;
         planetType=(int)(Math.random()*6);
+
 
         noiseMap = new double[2*this.radius + 1][2*this.radius + 1];
 
@@ -82,7 +84,7 @@ public class Planet{
     }
 
     public int getRadius(){
-        return radius;
+        return radius*8;
     }
 
     public double getX(){
@@ -94,15 +96,7 @@ public class Planet{
         return pos.y;
     }
     public Pair getCenter(){
-        double x=pos.x;
-        double y=pos.y;
-      if(pos.x>0) x+=noiseMap.length/2+40;
-      else x-=noiseMap.length/2-40;
-
-      if(pos.y>0) y+=noiseMap.length/2+40;
-      else y-=noiseMap.length/2-40;
-
-      return new Pair(x,y);
+        return new Pair(texture.getWidth(null)/2+pos.x,texture.getHeight(null)/2+pos.y);
     }
 
     public void setPos(Pair a){
@@ -113,6 +107,15 @@ public class Planet{
     }
     public void setAccel(Pair a){
         accel=a;
+    }
+    public Image getImage(){
+        return texture;
+    }
+
+    public boolean checkPlanetOverlap(Planet a){
+        if(a.pos.x+a.getImage().getWidth(null)/2<500 && a.pos.x+a.getImage().getWidth(null)/2>-500 && a.pos.y+a.getImage().getWidth(null)/2>-500&&a.pos.y+a.getImage().getWidth(null)/2<500) return true;
+        return ((this.pos.x<a.pos.x && this.pos.x+texture.getWidth(null)>a.pos.x) && (this.pos.y<a.pos.y && this.pos.y+texture.getHeight(null)>a.pos.y)|| (this.pos.x<a.pos.x && this.pos.x+texture.getWidth(null)>a.pos.x+a.getImage().getWidth(null)) && (this.pos.y<a.pos.y && this.pos.y+texture.getHeight(null)>a.pos.y+a.getImage().getHeight(null)));
+    
     }
 
     public double noise(int i, int j){
@@ -151,6 +154,11 @@ public class Planet{
 
     }
 
+
+
+   
+
+    //make the png textures for ech randomly generated planet and store them
     private void makePNGfile() throws IOException{
         BufferedImage img = new BufferedImage(noiseMap.length*8, noiseMap.length*8, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = img.createGraphics();
@@ -179,6 +187,7 @@ public class Planet{
         g.drawImage(texture, (int)(pos.x), (int)(pos.y), null);
     }
 
+    //determine colors for the planet based on its type
     public Color planetColorScheme(double alpha){
     
         if(this.planetType==0){
