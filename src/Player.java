@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.util.ArrayList;
 
 public class Player extends Character implements Movable{
 
@@ -15,6 +16,7 @@ public class Player extends Character implements Movable{
     private double fuelCapacity;
     private double currentFuel;
     private int spaceshipLevel;
+    public ArrayList<Bullet> bullets = new ArrayList<>();
 
     private boolean isSpaceship = false;
  
@@ -69,6 +71,8 @@ public class Player extends Character implements Movable{
             //g.drawRect((int)position.x-150, (int)position.y-150, 300, 300);
             //g.drawRect((int)position.x-150, (int)position.y-150, 300, 300);
         }
+
+       
 
     }
 
@@ -142,7 +146,7 @@ public class Player extends Character implements Movable{
         }else{
             isSpaceship = true;
         }
-
+     
 
 
         position = position.add(velocity.times(time));
@@ -184,7 +188,9 @@ public class Player extends Character implements Movable{
 
     }
 
-
+public void addBullet(){
+    bullets.add(new Bullet(position.x, position.y));
+}
     // public void checkBoundary(Game g){
     //     //method to check if the player is going to exit the map
 
@@ -219,7 +225,44 @@ class Bullet{
     Pair velocity;
     public Bullet(double x, double y){
         position =  new Pair(x, y);
-        
+        velocity= new Pair(200,200);
         
     }
+
+    public void update(Game g, double time){
+
+       switch (g.rotate) {
+        case 0:
+            position.y -= velocity.y*time;
+            break;
+        case 90:
+             position.x+= velocity.x*time;
+            break;
+        case 180:
+            position.y += velocity.y*time;
+            break;
+        case -90:
+             position.x -= velocity.x*time;
+             break;
+       }
+      
+        
+
+    }
+
+    public void draw(Graphics g){
+       
+        
+
+            g.setColor(Color.WHITE);
+            g.fillOval((int)position.x, (int)position.y, 10,10);
+    
+            
+
+      
+
+    }
+
+    
+
 }

@@ -156,6 +156,8 @@ public class Main extends JPanel implements KeyListener, MouseListener{
             case 'd':
                 steveGame.steve.stopMove(3);
                 steveGame.cam.stopMove(3);
+            case ' ':
+            steveGame.steve.addBullet();
         }
     }
     
@@ -291,6 +293,9 @@ class Game{
 
     public void updateGame(double time){
         villager.updateAI(this, time);
+        for(Bullet bullet:steve.bullets){
+            bullet.update(this, time);
+          }
         steve.update(this, time);
         cam.update(this, time);
 
@@ -309,6 +314,12 @@ class Game{
         starterPlanet.drawStarterPlanet(g);
         steve.drawFuelCapacity(g);
         villager.draw(g);
+
+        for(Bullet bullet: steve.bullets){
+
+           bullet.draw(g);
+    
+            }
         Graphics2D g2d= (Graphics2D)g;
         g2d.rotate(Math.toRadians(rotate),steve.getX(),steve.getY());
        
