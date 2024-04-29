@@ -4,12 +4,15 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+
+import org.w3c.dom.css.Rect;
 
 public class Planet{
 
@@ -47,6 +50,7 @@ public class Planet{
     protected int planetType;
     private static int countPlanets = 0;
     private Image texture;
+    private Rectangle bounds;
    
 
     public Planet(int initRadius){
@@ -84,7 +88,7 @@ public class Planet{
     }
 
     public int getRadius(){
-        return radius*8;
+        return radius;
     }
 
     public double getX(){
@@ -101,6 +105,7 @@ public class Planet{
 
     public void setPos(Pair a){
         pos=a;
+        bounds.setLocation((int)a.x,(int)a.y);
     }
     public void setVel(Pair a){
         vel=a;
@@ -111,11 +116,14 @@ public class Planet{
     public Image getImage(){
         return texture;
     }
+    public Rectangle getBounds(){
+        return bounds;
+    }
 
+    //https://stackoverflow.com/questions/335600/collision-detection-between-two-images-in-java helped resolve this 
     public boolean checkPlanetOverlap(Planet a){
-        if(a.pos.x+a.getImage().getWidth(null)/2<500 && a.pos.x+a.getImage().getWidth(null)/2>-500 && a.pos.y+a.getImage().getWidth(null)/2>-500&&a.pos.y+a.getImage().getWidth(null)/2<500) return true;
-        return ((this.pos.x<a.pos.x && this.pos.x+texture.getWidth(null)>a.pos.x) && (this.pos.y<a.pos.y && this.pos.y+texture.getHeight(null)>a.pos.y)|| (this.pos.x<a.pos.x && this.pos.x+texture.getWidth(null)>a.pos.x+a.getImage().getWidth(null)) && (this.pos.y<a.pos.y && this.pos.y+texture.getHeight(null)>a.pos.y+a.getImage().getHeight(null)));
-    
+        if(a.getCenter().x<500&&a.getCenter().x>-500 &&a.getCenter().y<500&&a.getCenter().y>-500) return true;
+        return this.bounds.intersects(a.getBounds());
     }
 
     public double noise(int i, int j){
@@ -177,6 +185,8 @@ public class Planet{
         File file = new File("./assets/planets/planet" +countPlanets +".png");
         ImageIO.write(img, "png", file);
         texture = ImageIO.read(file);
+        bounds = new Rectangle((int)pos.x, (int)pos.y, (int)texture.getWidth(null), (int)texture.getHeight(null));
+        
         
 
 
@@ -300,7 +310,7 @@ class StarterPlanet extends Planet {
     private int velocityX2 = -1;
 
     public StarterPlanet(){
-        super(10);
+        super(250);
         starterPlanet = new ImageIcon("assets\\StarterPlanet\\planet.png").getImage();
         starterPlanet = starterPlanet.getScaledInstance(500, 500, Image.SCALE_DEFAULT);
         

@@ -265,9 +265,8 @@ class Game{
                     Planet toAdd = new Planet(10+rand.nextInt(15));
                     toAdd.setPos(new Pair(multiplier*i*50, multiplier2*j*50));
                     while (checkTotalOverlap(toAdd)){
-                        toAdd.pos.x+=toAdd.getRadius();
-                        toAdd.pos.y+=toAdd.getRadius();
-                        System.out.println("while loop");
+                        toAdd.setPos(new Pair(toAdd.getX()+toAdd.getImage().getHeight(null), toAdd.getY()+toAdd.getImage().getHeight(null)));
+                    
                     }
 
                     planets.add(toAdd);
@@ -281,7 +280,6 @@ class Game{
 
     public boolean checkTotalOverlap(Planet a){
         for (Planet p:planets){
-            if(starterPlanet.checkPlanetOverlap(a)) return true;
             if (p.checkPlanetOverlap(a)){
                 return true; 
             }
