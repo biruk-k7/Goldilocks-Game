@@ -188,8 +188,8 @@ public class Player extends Character implements Movable{
 
     }
 
-public void addBullet(){
-    bullets.add(new Bullet(position.x, position.y));
+public void addBullet(int d){
+    bullets.add(new Bullet(position.x, position.y, d));
 }
     // public void checkBoundary(Game g){
     //     //method to check if the player is going to exit the map
@@ -223,15 +223,19 @@ public void addBullet(){
 class Bullet{
     Pair position;
     Pair velocity;
-    public Bullet(double x, double y){
+    final int direction;
+    
+    public Bullet(double x, double y, int d){
         position =  new Pair(x, y);
         velocity= new Pair(200,200);
+        direction=d;
+    
         
     }
 
     public void update(Game g, double time){
-
-       switch (g.rotate) {
+        
+       switch (direction) {
         case 0:
             position.y -= velocity.y*time;
             break;

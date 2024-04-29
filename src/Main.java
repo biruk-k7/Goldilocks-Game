@@ -124,6 +124,10 @@ public class Main extends JPanel implements KeyListener, MouseListener{
                     steveGame.steve.move(3);
                     steveGame.cam.move(3);
                     steveGame.rotate=90;
+                    break;
+                case ' ':
+                    steveGame.steve.addBullet(steveGame.rotate);
+                    break;
             }
         }
 
@@ -156,8 +160,8 @@ public class Main extends JPanel implements KeyListener, MouseListener{
             case 'd':
                 steveGame.steve.stopMove(3);
                 steveGame.cam.stopMove(3);
-            case ' ':
-            steveGame.steve.addBullet();
+                break;
+            
         }
     }
     
@@ -319,7 +323,7 @@ class Game{
 
            bullet.draw(g);
     
-            }
+        }
         Graphics2D g2d= (Graphics2D)g;
         g2d.rotate(Math.toRadians(rotate),steve.getX(),steve.getY());
        
