@@ -303,8 +303,6 @@ class StarterPlanet extends Planet {
     private Image starterPlanet;
     private Image cloud1;
     private Image cloud2;
-
-
     private Image castle;
     private  int cloudX1 = -350;
     private  int cloudX2 = -100;
@@ -313,8 +311,7 @@ class StarterPlanet extends Planet {
 
     public StarterPlanet(){
         super(10);
-        starterPlanet = new ImageIcon("./assests/StarterPlanet/planet.png").getImage();
-        //starterPlanet = new ImageIcon("assets\\StarterPlanet\\planet.png").getImage();
+        starterPlanet = new ImageIcon("assets\\StarterPlanet\\planet.png").getImage();
         starterPlanet = starterPlanet.getScaledInstance(500, 500, Image.SCALE_DEFAULT);
         
         cloud1 = new ImageIcon("assets\\StarterPlanet\\cloud1.png").getImage();
@@ -329,7 +326,6 @@ class StarterPlanet extends Planet {
     }
 
     public void drawStarterPlanet(Graphics g){
-        
         g.drawImage(castle, -105, -400, null);
         
         g.drawImage(starterPlanet,-250 ,-250, null);
