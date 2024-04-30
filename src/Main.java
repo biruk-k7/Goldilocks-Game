@@ -23,40 +23,35 @@ public class Main extends JPanel implements KeyListener, MouseListener{
     public static final int GAME_RUNNING = 1;
     public static final int GAME_OVER = 2;
 
-    //main storage variables
+    //main storage variables for the size of the world
     public static final int GAME_WIDTH = 10000;
     public static final int GAME_HEIGHT = 10000;
-
+    //store the size of the system screen
     public static Dimension screenDimension; 
-
+    //store the size of the game SCREEN
     public static int WIDTH;
     public static int HEIGHT;
     public static final int FPS = 60;
-
-
-
+    //field to represent the game
     Game steveGame;
 
     public Main(){
-
+        //get dimensions for the screen
         screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
-
+        //initialize the width and height of the game screen on system
         WIDTH = (int)screenDimension.getWidth();
         HEIGHT = (int)screenDimension.getHeight();
         System.out.println(WIDTH);
         System.out.println(HEIGHT);
-        //constructor for main 
+        //constructor for game
         steveGame = new Game();
-
+        //add listeners 
         addKeyListener(this);
         addMouseListener(this);
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        //start thread
         Thread mainThread = new Thread(new Runner());
         mainThread.start();
-        
-
-        
-    
     }
 
     public static void main(String[] args){
@@ -70,20 +65,20 @@ public class Main extends JPanel implements KeyListener, MouseListener{
         frame.pack();
         frame.setVisible(true);
 
-        //https://stackoverflow.com/questions/10468149/jframe-on-close-operation helped us with clearing files on close
+        //https://stackoverflow.com/questions/10468149/jframe-on-close-operation 
+        //clear planet files on close
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e){
                 for (int i =1; i<=Planet.getNumPlanets(); i++){
                     File file = new File("./assets/planets/planet"+i+".png");
                     file.delete();
-            
                 }
             }
         });
     }
 
     class Runner implements Runnable{
-
+        //the thread class
         public void run() {
             while(true){
                 
@@ -97,12 +92,11 @@ public class Main extends JPanel implements KeyListener, MouseListener{
         }
     }
 
-        //method to handle key presses
+    //method to handle key presses
     public void keyPressed(KeyEvent e) {
         char c = e.getKeyChar();
 
         //handle player and camera movemnet with key inputs
-
         if(steveGame.steve.getFuel() > 1){
             switch (c) {
                 case 'w':
@@ -125,25 +119,16 @@ public class Main extends JPanel implements KeyListener, MouseListener{
                     steveGame.cam.move(3);
                     steveGame.rotate=90;
                     break;
-                    
-                
-                   
             }
         }
-
-        
-        //adjust the camera based on the palayer's position &  width and the height
-        
-
         repaint();
     }
 
     //method to handle what happens when a key is released
     public void keyReleased(KeyEvent e) {
         char c=e.getKeyChar();
-                //handle player movemnet with key inputs
+        //handle player movemnet with key inputs
         switch (c) {
-
             //moving camera and player
             case 'w':
                 steveGame.steve.stopMove(0);
@@ -164,7 +149,6 @@ public class Main extends JPanel implements KeyListener, MouseListener{
             case ' ':
                 steveGame.steve.addBullet(steveGame.rotate);
                 break;
-            
         }
     }
     
