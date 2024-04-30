@@ -1,6 +1,7 @@
 //package Final;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class Alien extends Character {
 
@@ -19,7 +20,7 @@ public class Alien extends Character {
         public void setAccel(Pair a){
             accel=a;
         }
-        public void draw(Graphics g){
+        public void draw(Graphics2D g){
     
         }
         
