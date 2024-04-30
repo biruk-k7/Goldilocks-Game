@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 
@@ -39,6 +40,10 @@ public class Player extends Character implements Movable{
 
     }
 
+    public boolean getIsSpaceShip(){
+        return isSpaceship;
+    }
+
     public Rectangle getBounds(){
         return bounds;
     }
@@ -68,7 +73,7 @@ public class Player extends Character implements Movable{
         return position.y;
     }
     
-    public void draw(Graphics g){
+    public void draw(Graphics2D g){
         //method to draw the player
 
         g.setColor(Color.GREEN);
@@ -78,7 +83,7 @@ public class Player extends Character implements Movable{
             //g.drawRect((int)position.x-150, (int)position.y-150, 300, 300);
             //g.drawRect((int)position.x-150, (int)position.y-150, 300, 300);
         } 
-        else g.drawRect((int)position.x-150, (int)position.y-150, 20, 20);
+        else g.drawRect((int)position.x-10, (int)position.y-10, 20, 20);
 
 
        
