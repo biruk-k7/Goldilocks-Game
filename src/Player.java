@@ -19,7 +19,7 @@ public class Player extends Character implements Movable{
     private double currentFuel;
     private int spaceshipLevel;
     private Rectangle bounds;
-    public ArrayList<Bullet> bullets = new ArrayList<>();
+    public ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 
     private boolean isSpaceship = false;
  
@@ -201,7 +201,7 @@ public class Player extends Character implements Movable{
 
     }
 
-public void addBullet(int d){
+public void shoot(int d){
     bullets.add(new Bullet(position.x, position.y, d));
 }
     // public void checkBoundary(Game g){
