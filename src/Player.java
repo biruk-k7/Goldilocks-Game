@@ -14,7 +14,8 @@ public class Player extends Character implements Movable{
 
     private Pair position = new Pair();
     private Pair velocity = new Pair();
-    private Image image;
+    private Image spaceship;
+    private Image astronaut;
     private double fuelCapacity;
     private double currentFuel;
     private int spaceshipLevel;
@@ -30,12 +31,14 @@ public class Player extends Character implements Movable{
         position.y = initY;
         velocity.x = 0;
         velocity.y = 0;
-        image = new ImageIcon("spaceship.png").getImage();
-        image = image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+        spaceship = new ImageIcon("./assets/player/spaceship.png").getImage();
+        spaceship = spaceship.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
+        astronaut = new ImageIcon("./assets/player/astronaut.gif").getImage();
+        astronaut=astronaut.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
         this.fuelCapacity = 10;
         this.currentFuel = 10;
         this.spaceshipLevel = 1; 
-        bounds = new Rectangle((int)position.x, (int)position.y, image.getWidth(null), image.getHeight(null));
+        bounds = new Rectangle((int)position.x, (int)position.y, spaceship.getWidth(null), spaceship.getHeight(null));
 
 
     }
@@ -79,11 +82,14 @@ public class Player extends Character implements Movable{
         g.setColor(Color.GREEN);
 
         if(isSpaceship){
-            g.drawImage(image, (int)position.x - 25, (int)position.y - 25, null);
+            g.drawImage(spaceship, (int)position.x - 25, (int)position.y - 25, null);
             //g.drawRect((int)position.x-150, (int)position.y-150, 300, 300);
             //g.drawRect((int)position.x-150, (int)position.y-150, 300, 300);
         } 
-        else g.drawRect((int)position.x-10, (int)position.y-10, 20, 20);
+        else {
+            g.drawImage(astronaut, (int)position.x - 25, (int)position.y - 25, null);
+            //g.drawRect((int)position.x-10, (int)position.y-10, 20, 20);
+        }
 
 
        
@@ -161,7 +167,7 @@ public class Player extends Character implements Movable{
             isSpaceship = true;
         }
         position = position.add(velocity.times(time));
-        bounds = new Rectangle((int)position.x, (int)position.y, image.getWidth(null), image.getHeight(null));
+        bounds = new Rectangle((int)position.x, (int)position.y, spaceship.getWidth(null), spaceship.getHeight(null));
         
         if(Math.pow(velocity.x, 2) + Math.pow(velocity.y,2) > 0){
             currentFuel -= 0.01;
