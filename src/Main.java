@@ -248,15 +248,20 @@ class Game{
 
         for(int i = 0; i < worldNoise.noise.length; i++){
             for(int j = 0; j < worldNoise.noise.length; j++){
+
+                //check if a planet should spawn
                 if(worldNoise.checkForPlanet(i, j)){
+                    //get rand numbers to set position
                     Random rand = new Random();
                     int randomNumber = rand.nextInt(2);
                     int multiplier = (randomNumber == 0) ? -1 : 1;
                     Random rand2 = new Random();
                     int randomNumber2 = rand2.nextInt(2);
                     int multiplier2 = (randomNumber2 == 0) ? -1 : 1;
+                    //create new planet with rand radius
                     Planet toAdd = new Planet(10+rand.nextInt(15));
                     toAdd.setPos(new Pair(multiplier*i*50, multiplier2*j*50));
+                    //if planwt doesnt overlap, set position offset for image
                     while (checkTotalOverlap(toAdd)){
                         toAdd.setPos(new Pair(toAdd.getX()+toAdd.getImage().getHeight(null), toAdd.getY()+toAdd.getImage().getHeight(null)));
                     

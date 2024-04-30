@@ -1,5 +1,6 @@
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
@@ -16,6 +17,7 @@ public class Player extends Character implements Movable{
     private double fuelCapacity;
     private double currentFuel;
     private int spaceshipLevel;
+    private Rectangle bounds;
     public ArrayList<Bullet> bullets = new ArrayList<>();
 
     private boolean isSpaceship = false;
@@ -32,8 +34,13 @@ public class Player extends Character implements Movable{
         this.fuelCapacity = 10;
         this.currentFuel = 10;
         this.spaceshipLevel = 1; 
+        bounds = new Rectangle((int)position.x, (int)position.y, image.getWidth(null), image.getHeight(null));
 
 
+    }
+
+    public Rectangle getBounds(){
+        return bounds;
     }
 
     public double getFuel(){
@@ -70,7 +77,9 @@ public class Player extends Character implements Movable{
             g.drawImage(image, (int)position.x - 25, (int)position.y - 25, null);
             //g.drawRect((int)position.x-150, (int)position.y-150, 300, 300);
             //g.drawRect((int)position.x-150, (int)position.y-150, 300, 300);
-        }
+        } 
+        else g.drawRect((int)position.x-150, (int)position.y-150, 20, 20);
+
 
        
 
@@ -140,16 +149,14 @@ public class Player extends Character implements Movable{
     }
 
     public void update(Game g, double time){
-
+         
         if(isOnPlanet(g)){
             isSpaceship = false;
         }else{
             isSpaceship = true;
         }
-     
-
-
         position = position.add(velocity.times(time));
+        bounds = new Rectangle((int)position.x, (int)position.y, image.getWidth(null), image.getHeight(null));
         
         if(Math.pow(velocity.x, 2) + Math.pow(velocity.y,2) > 0){
             currentFuel -= 0.01;
@@ -161,24 +168,25 @@ public class Player extends Character implements Movable{
         // for loop to check all planets
         // our own position
         // planet position + radius calculation
+        double distance = 100000.0;
+        Planet p = null;
 
-        // for(int i = 0; i < g.planets.length; i++){
-        //     for(int j = 0; j < g.planets.length; j++){
-               
-        //             double distance = distanceToPlanet(g.planets[i][j].getCenter().x, g.planets[i][j].getCenter().y);
-        //             System.out.println(distance);
-        //             System.out.println(g.planets[i][j].radius);
-        //             if (distance < g.planets[i][j].getRadius()){
+        for (Planet s:g.planets){
+            double testDist = distanceToPlanet(s.getCenter().x, s.getCenter().y);
 
-        //                 System.out.println("true");
-        //                 return true;
-                       
-        //             }
-                
-        //     }
-        // }
+            if (testDist < distance) {
+                distance = testDist;
+                p = s;
+            }
+        }
+        System.out.println(distance);
+        System.out.println(p.getBounds().getWidth());
 
-
+        if (this.bounds.intersects(p.getBounds())){
+            System.out.println("true");
+            return true;
+        }
+        
         return false;
     }
 
