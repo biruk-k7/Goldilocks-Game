@@ -150,6 +150,9 @@ public class Main extends JPanel implements KeyListener, MouseListener{
                 steveGame.steve.shoot(steveGame.rotate);
                }
                 break;
+            case 'f':
+              steveGame.steve.refuel();
+
         }
     }
     
