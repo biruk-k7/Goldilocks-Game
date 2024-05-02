@@ -41,21 +41,15 @@ public class Planet extends SpaceObject{
 
 
     }
-
-    public int radius;
-    protected Pair pos;
-    protected Pair vel;
-    protected Pair accel;
     protected double[][] noiseMap;
     protected int planetType;
     private static int countPlanets = 0;
-    private Image texture;
-    private Rectangle bounds;
+    //private Image texture;
    
 
     public Planet(int initRadius){
         pos = new Pair();
-        vel=new Pair();
+        vel = new Pair();
         accel=new Pair();
         radius = initRadius;
         planetType=(int)(Math.random()*6);
@@ -85,39 +79,6 @@ public class Planet extends SpaceObject{
 
     public double[][] getNoiseMap(){
         return noiseMap;
-    }
-
-    public int getRadius(){
-        return radius;
-    }
-
-    public double getX(){
-        return pos.x;
-    }
-
-    public double getY(){
-       
-        return pos.y;
-    }
-    public Pair getCenter(){
-        return new Pair(texture.getWidth(null)/2+pos.x,texture.getHeight(null)/2+pos.y);
-    }
-
-    public void setPos(Pair a){
-        pos=a;
-        bounds.setLocation((int)a.x,(int)a.y);
-    }
-    public void setVel(Pair a){
-        vel=a;
-    }
-    public void setAccel(Pair a){
-        accel=a;
-    }
-    public Image getImage(){
-        return texture;
-    }
-    public Rectangle getBounds(){
-        return bounds;
     }
 
     //https://stackoverflow.com/questions/335600/collision-detection-between-two-images-in-java helped resolve this 
@@ -186,12 +147,8 @@ public class Planet extends SpaceObject{
         ImageIO.write(img, "png", file);
         texture = ImageIO.read(file);
         bounds = new Rectangle((int)pos.x, (int)pos.y, (int)texture.getWidth(null), (int)texture.getHeight(null));
-        
-        
-
-
     }
-
+    @Override
     public void draw(Graphics g){
 
         g.drawImage(texture, (int)(pos.x), (int)(pos.y), null);
@@ -257,22 +214,26 @@ public class Planet extends SpaceObject{
     }
 }
 
-class Asteroid extends Planet{
+class Asteroid extends SpaceObject{
 
     private boolean destroyed;
     //variables to store number of resources dropped after destroying the asteroid
     private int stone;
     private int iron;
 
-    public Asteroid(){
-        super(15);
+    public Asteroid(int initRadius){
+        pos = new Pair();
+        vel = new Pair();
+        accel=new Pair();
+        radius = initRadius;
         destroyed= false;
         //i set it to 0 through 8 for now plus smt proportional to radius
         stone = (int)(Math.random()*8+this.radius/3);
         //making iron more rare than stone here
-        iron=(int)(Math.random()*4);
+        iron = (int)(Math.random()*4);
     }
 
+    @Override
     public void draw(Graphics g){
         g.setColor(Color.gray);
         g.fillOval(-400, -400, 100, 100);
