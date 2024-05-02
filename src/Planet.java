@@ -253,14 +253,8 @@ public class Planet{
             if(alpha>.8) return new Color( 	204, 191, 165);
         }
 
-            return null;
-        
-   
-
-        
+            return null;   
     }
-
-
 }
 
 class Asteroid extends Planet{
@@ -278,10 +272,13 @@ class Asteroid extends Planet{
         //making iron more rare than stone here
         iron=(int)(Math.random()*4);
 
+        
+
     }
 
     public void draw(Graphics g){
-        g.fillOval(iron, iron, stone, iron);
+        g.setColor(Color.gray);
+        g.fillOval(-400, -400, 100, 100);
     }
 
 }
