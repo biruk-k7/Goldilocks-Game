@@ -330,7 +330,10 @@ class Game{
     
         }
         Graphics2D g2d= (Graphics2D)g;
-        g2d.rotate(Math.toRadians(rotate),steve.getX(),steve.getY());
+        
+        if(!steve.isOnPlanet(this)){
+             g2d.rotate(Math.toRadians(rotate),steve.getX(),steve.getY());
+        }
        
         steve.draw(g2d);
     }
