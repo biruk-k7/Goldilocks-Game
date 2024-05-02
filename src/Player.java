@@ -12,11 +12,12 @@ import java.util.ArrayList;
 
 public class Player extends Character implements Movable{
 
-    private Pair position = new Pair();
-    private Pair velocity = new Pair();
+    private Pair position ;
+    private Pair velocity ;
     private Image spaceship;
     private Image astronaut;
     private double fuelCapacity;
+    private double fuelCollected;
     private double currentFuel;
     private int spaceshipLevel;
     private Rectangle bounds;
@@ -27,10 +28,8 @@ public class Player extends Character implements Movable{
     public Player(double initX, double initY){
 
         super();
-        position.x = initX;
-        position.y = initY;
-        velocity.x = 0;
-        velocity.y = 0;
+       position = new Pair(initX, initY);
+        velocity = new Pair(0, 0);
         spaceship = new ImageIcon("./assets/player/spaceship.png").getImage();
         spaceship = spaceship.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
         astronaut = new ImageIcon("./assets/player/astronaut.gif").getImage();
@@ -55,8 +54,24 @@ public class Player extends Character implements Movable{
         return currentFuel;
     }
 
-    public void updateFuel(boolean isOnPlanet, int fuelDrain){
+    public void  refuel(){
+        if(fuelCollected>=2){
+
+        if(currentFuel+2>=fuelCapacity){
+            fuelCollected -= fuelCapacity-currentFuel;
+            currentFuel=fuelCapacity;
+            
+        }
+        else
+        currentFuel+=2;
+        fuelCollected-=2;
+    }
+ }
+
+    public void updateFuel(boolean isOnPlanet, double fuelDrain){
+        if(!isOnPlanet){
         this.currentFuel -= fuelDrain;
+        }
     }
 
     public int getSpaceshipLevel(){
@@ -170,7 +185,7 @@ public class Player extends Character implements Movable{
         bounds = new Rectangle((int)position.x, (int)position.y, spaceship.getWidth(null), spaceship.getHeight(null));
         
         if(Math.pow(velocity.x, 2) + Math.pow(velocity.y,2) > 0){
-            currentFuel -= 0.01;
+            updateFuel(isOnPlanet(g), 0.01);;
         }
 
     }
@@ -210,31 +225,7 @@ public class Player extends Character implements Movable{
 public void shoot(int d){
     bullets.add(new Bullet(position.x, position.y, d));
 }
-    // public void checkBoundary(Game g){
-    //     //method to check if the player is going to exit the map
-
-    //     //if goes out of x boundary
-    //     switch (position.x){
-    //         case g.getWidth():
-                
-    //             break;
-    //         case 0:
-
-                
-    //     }
-
-    //     //if gores out of y boundary 
-    //     switch (position.y){
-    //         case g.getHeight():
-
-    //             break;
-    //         case 0:
-                
-
-    //     }
-    // }
-   
-
+  
    
 
 }
