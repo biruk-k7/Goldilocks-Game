@@ -1,15 +1,14 @@
-import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 
 public abstract class SpaceObject {
 
-    public int radius;
-    protected Pair pos;
-    protected Pair vel;
-    protected Pair accel;
-    Rectangle bounds;
-    Image texture;
+    private int radius;
+    private Pair pos;
+    private Pair vel;
+    private Pair accel;
+    private Image texture;
+    private Rectangle bounds;
     
     public int getRadius(){
         return radius;
@@ -17,15 +16,6 @@ public abstract class SpaceObject {
 
     public Pair getPos(){
         return pos;
-    }
-
-    public double getX(){
-        return pos.x;
-    }
-
-    public double getY(){
-       
-        return pos.y;
     }
 
     public Pair getVel(){
@@ -38,7 +28,7 @@ public abstract class SpaceObject {
 
     public void setPos(Pair a){
         pos = a;
-        bounds.setLocation((int)a.x,(int)a.y);
+        bounds = new Rectangle((int)a.x, (int)a.y, radius, radius);
     }
 
     public void setVel(Pair v){
@@ -50,7 +40,6 @@ public abstract class SpaceObject {
     }
 
     public Pair getCenter(){
-
         return new Pair(texture.getWidth(null)/2+pos.x,texture.getHeight(null)/2+pos.y);
     }
 
@@ -59,10 +48,8 @@ public abstract class SpaceObject {
         return bounds;
     }
 
-    public Image getImage(){
-        return texture;
-    }
+    
 
-    public abstract void draw(Graphics g);
+
 } 
  
