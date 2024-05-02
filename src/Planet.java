@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 
 import org.w3c.dom.css.Rect;
 
-public class Planet{
+public class Planet extends SpaceObject{
 
     public static void main(String[] args){
 
@@ -271,9 +271,6 @@ class Asteroid extends Planet{
         stone = (int)(Math.random()*8+this.radius/3);
         //making iron more rare than stone here
         iron=(int)(Math.random()*4);
-
-        
-
     }
 
     public void draw(Graphics g){
