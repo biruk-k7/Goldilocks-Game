@@ -224,7 +224,7 @@ class Game{
     public Background background;
     public StarterPlanet starterPlanet;
     public ArrayList<Planet> planets;
-    public ArrayList<Planet> asteroids;
+    //public ArrayList<Planet> asteroids;
     //Asteroid asteroid;
     
 
