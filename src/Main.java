@@ -225,7 +225,7 @@ class Game{
     public StarterPlanet starterPlanet;
     public ArrayList<Planet> planets;
     public ArrayList<Planet> asteroids;
-    Asteroid asteroid;
+    //Asteroid asteroid;
     
 
     public Game(){
@@ -241,8 +241,8 @@ class Game{
 
         starterPlanet = new StarterPlanet();
 
-        asteroid = new Asteroid();
-        asteroid.setPos(new Pair(-400, -400));
+        //asteroid = new Asteroid();
+        //asteroid.setPos(new Pair(-400, -400));
 
         testPlanet.setPos(new Pair(-300,-300));
     
@@ -319,7 +319,7 @@ class Game{
         starterPlanet.drawStarterPlanet(g);
         steve.drawFuelCapacity(g);
         villager.draw(g);
-        drawAsteroids(g);
+        //drawAsteroids(g);
 
         for(Bullet bullet: steve.bullets){
 
@@ -342,7 +342,7 @@ class Game{
 
     public void drawAsteroids(Graphics g){
 
-        asteroid.draw(g);
+        //asteroid.draw(g);
     }
 
  
