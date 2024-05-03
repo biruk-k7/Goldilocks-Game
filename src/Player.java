@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.Iterator;
+
 
 public class Player extends Character implements Movable{
 
@@ -17,7 +19,7 @@ public class Player extends Character implements Movable{
     private Image spaceship;
     private Image astronaut;
     private double fuelCapacity;
-    private double fuelCollected;
+    public double fuelCollected;
     private double currentFuel;
     private int spaceshipLevel;
     private Rectangle bounds;
@@ -219,11 +221,16 @@ public void shoot(int d){
 class Bullet{
     Pair position;
     Pair velocity;
+    int radius;
+    public boolean used;
+    private Rectangle bounds;
     final int direction;
     
     public Bullet(double x, double y, int d){
         position =  new Pair(x-5, y-5);
         velocity= new Pair(200,200);
+        radius=5;
+        bounds=new Rectangle((int)position.x, (int)position.y,2*radius,2*radius);
         direction=d;
     
         
@@ -245,17 +252,34 @@ class Bullet{
              position.x -= velocity.x*time;
              break;
        }
-      
-        
 
+       Iterator<Asteroid> asteroidIterator = g.asteroids.iterator();
+while (asteroidIterator.hasNext()) {
+    Asteroid a = asteroidIterator.next();
+    double dist = Math.sqrt(Math.pow(a.pos.x + a.radius - position.x + radius / 2, 2) +
+            Math.pow(a.pos.y + a.radius - position.y + radius / 2, 2));
+    if (dist < 20) {
+        asteroidIterator.remove(); 
     }
+}
 
+          
+     }
+
+     
+       
+       
+
+    public Rectangle getBounds(){
+        return bounds;
+    }
     public void draw(Graphics g){
        
         
-
+        if(!used){
             g.setColor(Color.WHITE);
             g.fillOval((int)position.x, (int)position.y, 10,10);
+        }
     
             
 

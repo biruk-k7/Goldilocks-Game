@@ -11,6 +11,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import java.util.Iterator;
 
 import org.w3c.dom.css.Rect;
 
@@ -217,7 +218,7 @@ public class Planet extends SpaceObject{
 
 class Asteroid extends SpaceObject implements Movable{
 
-    private boolean destroyed;
+    public boolean destroyed;
     //variables to store number of resources dropped after destroying the asteroid
     private int stone;
     private int iron;
@@ -236,7 +237,7 @@ class Asteroid extends SpaceObject implements Movable{
         stone = (int)(Math.random()*8+this.radius/3);
         //making iron more rare than stone here
         iron = (int)(Math.random()*4);
-        bounds = new Rectangle((int)pos.x, (int)pos.y, radius*2,radius*2);
+        bounds = new Rectangle((int)pos.x, (int)pos.y, radius, radius);
         texture = new ImageIcon("./assets/player/asteroid1.png").getImage();
         texture = texture.getScaledInstance(radius+5, radius, Image.SCALE_DEFAULT);
     }
@@ -245,18 +246,39 @@ class Asteroid extends SpaceObject implements Movable{
 
     @Override
     public void draw(Graphics g){
+      if(!destroyed){
         
-        g.drawImage(texture,(int)pos.x, (int)pos.y, null);
+                 g.drawImage(texture,(int)pos.x, (int)pos.y, null);
+                 g.drawRect((int)pos.x, (int)pos.y, radius, radius);
+       }
     }
 
     @Override
+
+   
     public void update(Game g, double time) {
         pos = pos.add(vel.times(time));
-    }
+        
+        Iterator<Bullet> bulletIterator = g.steve.bullets.iterator();
+        while (bulletIterator.hasNext()) {
+            Bullet a = bulletIterator.next();
+            double dist = Math.sqrt(Math.pow(a.position.x + a.radius - pos.x + radius / 2, 2) +
+                    Math.pow(a.position.y + a.radius - pos.y + radius / 2, 2));
+            if (dist < 20) {
+                destroyed = true;
+               
+                g.steve.fuelCollected += 2;
+                bulletIterator.remove(); 
+            }
+        }
+        
+            System.out.println("Collected: " +  g.steve.fuelCollected);
+              
+         }
+    
 
-    public void setPos(Pair a){
-        pos=a;
-    }
+
+
     @Override
     public void move(int dir) {
       
@@ -265,6 +287,10 @@ class Asteroid extends SpaceObject implements Movable{
     @Override
     public void stopMove(int dir) {
         
+    }
+
+    public Rectangle getBounds(){
+        return bounds;
     }
 
 }

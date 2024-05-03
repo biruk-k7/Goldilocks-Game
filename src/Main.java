@@ -4,10 +4,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.geom.Ellipse2D;
 import java.io.File;
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 import java.awt.event.*;
 import java.lang.Math.*;
@@ -320,6 +322,8 @@ class Game{
 
     public void updateGame(double time){
         villager.updateAI(this, time);
+        //checkCollisions();
+        
         for(Bullet bullet:steve.bullets){
             bullet.update(this, time);
           }
@@ -337,6 +341,10 @@ class Game{
         }
         
     }
+  
+    
+   
+    
 
     public void drawPlayers(Graphics g){
         drawPlanets(g);
