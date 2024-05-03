@@ -16,12 +16,14 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 
+
 public class Main extends JPanel implements KeyListener, MouseListener{
 
     //store the state of the game 
     public static final int START_SCREEN = 0;
     public static final int GAME_RUNNING = 1;
     public static final int GAME_OVER = 2;
+    public static boolean isIntroScreen = true;
 
     //main storage variables for the size of the world
     public static final int GAME_WIDTH = 10000;
@@ -67,6 +69,7 @@ public class Main extends JPanel implements KeyListener, MouseListener{
 
         //https://stackoverflow.com/questions/10468149/jframe-on-close-operation 
         //clear planet files on close
+
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e){
                 for (int i =1; i<=Planet.getNumPlanets(); i++){
@@ -82,7 +85,13 @@ public class Main extends JPanel implements KeyListener, MouseListener{
         public void run() {
             while(true){
                 
-                steveGame.updateGame(1.0 / (double)FPS);
+                if(isIntroScreen){
+                    steveGame.updateIntroScreen(1.0 / (double) FPS);
+                }else{
+                    steveGame.updateGame(1.0 / (double)FPS);
+                }
+
+                
 
                 repaint();
                 try{
@@ -198,8 +207,9 @@ public class Main extends JPanel implements KeyListener, MouseListener{
         //"infinite" world
         g2d.setColor(Color.BLACK);
         g2d.fillRect(-50000, -50000, 100000, 100000);
-        steveGame.background.drawBackground(g);
-        steveGame.drawPlayers(g );
+        if(isIntroScreen){steveGame.introScreen.draw(g);}
+        else{steveGame.background.drawBackground(g);
+        steveGame.drawPlayers(g);}
         
     }
 
@@ -223,6 +233,7 @@ class Game{
     public static final int renderDistance=2000;
 
     public Camera cam;
+    public IntroScreen introScreen;
     public WorldNoise worldNoise;
     public Background background;
     public StarterPlanet starterPlanet;
@@ -238,6 +249,7 @@ class Game{
         villager = new Villager(new Pair(0,0));
         cam = new Camera(new Pair(-Main.WIDTH/2,-Main.HEIGHT/2));
         planets = new ArrayList<Planet>();
+        introScreen = new IntroScreen(WIDTH, HEIGHT);
 
         //testing planet
         testPlanet = new Planet(17);
@@ -294,11 +306,14 @@ class Game{
         return false;
     }
 
+<<<<<<< Updated upstream
     public void initializeAsteroids(){
 
         //asteroids.add(new Asteroid());
     }
 
+=======
+>>>>>>> Stashed changes
     public void updateGame(double time){
         villager.updateAI(this, time);
         for(Bullet bullet:steve.bullets){
@@ -346,11 +361,17 @@ class Game{
 
     }
 
+<<<<<<< Updated upstream
     public void drawAsteroids(Graphics g){
 
         //asteroid.draw(g);
     }
 
  
+=======
+    public void updateIntroScreen(double time){
+
+    }
+>>>>>>> Stashed changes
    
 }
