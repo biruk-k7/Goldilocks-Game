@@ -37,7 +37,7 @@ public class Player extends Character implements Movable{
         this.fuelCapacity = 10;
         this.currentFuel = 10;
         this.spaceshipLevel = 1; 
-        bounds = new Rectangle((int)position.x, (int)position.y, spaceship.getWidth(null), spaceship.getHeight(null));
+        bounds = new Rectangle((int)position.x, (int)position.y, 50, 50);
 
 
     }
@@ -98,7 +98,7 @@ public class Player extends Character implements Movable{
 
         if(isSpaceship){
             g.drawImage(spaceship, (int)position.x - 25, (int)position.y - 25, null);
-            //g.drawRect((int)position.x-150, (int)position.y-150, 300, 300);
+            //g.drawRect((int)position.x-25, (int)position.y-25, spaceship.getWidth(null)-15, spaceship.getHeight(null)-15);
             //g.drawRect((int)position.x-150, (int)position.y-150, 300, 300);
         } 
         else {
@@ -182,7 +182,7 @@ public class Player extends Character implements Movable{
             isSpaceship = true;
         }
         position = position.add(velocity.times(time));
-        bounds = new Rectangle((int)position.x, (int)position.y, spaceship.getWidth(null), spaceship.getHeight(null));
+        bounds = new Rectangle((int)position.x-20, (int)position.y-20, spaceship.getWidth(null)-20, spaceship.getHeight(null)-20);
         
         if(Math.pow(velocity.x, 2) + Math.pow(velocity.y,2) > 0){
             updateFuel(isOnPlanet(g), 0.01);;
@@ -194,33 +194,19 @@ public class Player extends Character implements Movable{
         // for loop to check all planets
         // our own position
         // planet position + radius calculation
-        double distance = 100000.0;
-        Planet p = null;
-
-        for (Planet s:g.planets){
-            double testDist = distanceToPlanet(s.getCenter().x, s.getCenter().y);
-
-            if (testDist < distance) {
-                distance = testDist;
-                p = s;
-            }
-        }
-        System.out.println(distance);
-        System.out.println(p.getBounds().getWidth());
-
-        if (this.bounds.intersects(p.getBounds())){
-            System.out.println("true");
-            return true;
-        }
         
+        for (Planet s:g.planets){
+            if (this.bounds.intersects(s.getBounds())){
+            
+                return true;
+            }
+            
+        }
+      
         return false;
     }
 
-    private double distanceToPlanet(double x2, double y2){
-
-        return Math.sqrt(Math.pow(this.position.x - x2, 2) + Math.pow(this.position.y - y2, 2));
-
-    }
+   
 
 public void shoot(int d){
     bullets.add(new Bullet(position.x, position.y, d));

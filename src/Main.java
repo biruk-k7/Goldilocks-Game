@@ -23,7 +23,7 @@ public class Main extends JPanel implements KeyListener, MouseListener{
     public static final int START_SCREEN = 0;
     public static final int GAME_RUNNING = 1;
     public static final int GAME_OVER = 2;
-    public static boolean isIntroScreen = true;
+    public static boolean isIntroScreen = false;
 
     //main storage variables for the size of the world
     public static final int GAME_WIDTH = 10000;
