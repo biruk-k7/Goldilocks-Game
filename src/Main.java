@@ -325,8 +325,8 @@ class Game{
           }
         steve.update(this, time);
         cam.update(this, time);
-        for(Asteroid b: asteroids){
-            b.update(this, time);
+        for(Asteroid a: asteroids){
+            a.update(this, time);
         }
 
         if(steve.getFuel() <= 1){
