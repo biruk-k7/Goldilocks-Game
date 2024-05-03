@@ -306,12 +306,19 @@ class Game{
         return false;
     }
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     public void initializeAsteroids(){
 
         //asteroids.add(new Asteroid());
     }
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     public void updateGame(double time){
         villager.updateAI(this, time);
         for(Bullet bullet:steve.bullets){
@@ -371,5 +378,8 @@ class Game{
 
     }
 
+<<<<<<< Updated upstream
    
+=======
+>>>>>>> Stashed changes
 }
