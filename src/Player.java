@@ -256,10 +256,12 @@ class Bullet{
        Iterator<Asteroid> asteroidIterator = g.asteroids.iterator();
 while (asteroidIterator.hasNext()) {
     Asteroid a = asteroidIterator.next();
-    double dist = Math.sqrt(Math.pow(a.pos.x + a.radius - position.x + radius / 2, 2) +
-            Math.pow(a.pos.y + a.radius - position.y + radius / 2, 2));
+    double dist = Math.sqrt(Math.pow((a.pos.x + a.radius) - (position.x + radius / 2), 2) +
+            Math.pow((a.pos.y + a.radius) - (position.y + radius / 2), 2));
     if (dist < 20) {
         asteroidIterator.remove(); 
+        this.used =true;
+        g.steve.fuelCollected  +=2;
     }
 }
 

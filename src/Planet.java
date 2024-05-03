@@ -262,17 +262,18 @@ class Asteroid extends SpaceObject implements Movable{
         Iterator<Bullet> bulletIterator = g.steve.bullets.iterator();
         while (bulletIterator.hasNext()) {
             Bullet a = bulletIterator.next();
-            double dist = Math.sqrt(Math.pow(a.position.x + a.radius - pos.x + radius / 2, 2) +
-                    Math.pow(a.position.y + a.radius - pos.y + radius / 2, 2));
+            double dist = Math.sqrt(Math.pow((a.position.x + a.radius) - (pos.x + radius / 2), 2) +
+                    Math.pow((a.position.y + a.radius) - (pos.y + radius / 2), 2));
             if (dist < 20) {
                 destroyed = true;
-               
-                g.steve.fuelCollected += 2;
-                bulletIterator.remove(); 
+               g.steve.fuelCollected  +=2;
+                System.out.println("Collected: " +  g.steve.fuelCollected);
+             
+
             }
         }
         
-            System.out.println("Collected: " +  g.steve.fuelCollected);
+            
               
          }
     

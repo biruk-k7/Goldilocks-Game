@@ -337,6 +337,7 @@ class Game{
             cam.velocity.x = 0;
             cam.velocity.y = 0;
             steve.vel.x = 0;
+            
             steve.vel.y = 0;
         }
         
