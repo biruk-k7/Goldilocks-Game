@@ -245,8 +245,7 @@ class Asteroid extends SpaceObject implements Movable{
 
     @Override
     public void draw(Graphics g){
-        g.setColor(Color.gray);
-        g.fillOval((int)pos.x, (int)pos.y, radius, radius);
+        
         g.drawImage(texture,(int)pos.x, (int)pos.y, null);
     }
 
