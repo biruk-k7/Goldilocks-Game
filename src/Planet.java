@@ -222,13 +222,13 @@ class Asteroid extends SpaceObject implements Movable{
     private int stone;
     private int iron;
     private Rectangle bounds;
+    private Image texture;
 
     public Asteroid(int initRadius){
         pos = new Pair(-5000 + Math.random()*10000, -5000 + Math.random()*10000);
         int mult1 = (Math.random()>.5) ? 1: -1;
         int mult2 = (Math.random()>.5) ? 1: -1;
         vel = new Pair(mult1*(20 + Math.random()*100), mult2*(20+Math.random()*100));
-        System.out.println("Asteroid position: (" + pos.x+ ", "+pos.y+" )");
         accel=new Pair();
         radius = initRadius;
         destroyed= false;
@@ -237,12 +237,17 @@ class Asteroid extends SpaceObject implements Movable{
         //making iron more rare than stone here
         iron = (int)(Math.random()*4);
         bounds = new Rectangle((int)pos.x, (int)pos.y, radius*2,radius*2);
+        texture = new ImageIcon("./assets/player/asteroid1.png").getImage();
+        texture = texture.getScaledInstance(radius+5, radius, Image.SCALE_DEFAULT);
     }
+
+
 
     @Override
     public void draw(Graphics g){
         g.setColor(Color.gray);
         g.fillOval((int)pos.x, (int)pos.y, radius, radius);
+        g.drawImage(texture,(int)pos.x, (int)pos.y, null);
     }
 
     @Override
