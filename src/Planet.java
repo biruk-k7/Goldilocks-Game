@@ -152,8 +152,8 @@ public class Planet extends SpaceObject{
     public void draw(Graphics g){
 
         g.drawImage(texture, (int)(pos.x), (int)(pos.y), null);
-        g.setColor(Color.green);
-        g.drawRect((int)pos.x, (int)pos.y, texture.getWidth(null), texture.getHeight(null));
+        // g.setColor(Color.green);
+        // g.drawRect((int)pos.x, (int)pos.y, texture.getWidth(null), texture.getHeight(null));
     }
 
     //determine colors for the planet based on its type
