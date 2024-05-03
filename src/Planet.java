@@ -215,16 +215,20 @@ public class Planet extends SpaceObject{
     }
 }
 
-class Asteroid extends SpaceObject{
+class Asteroid extends SpaceObject implements Movable{
 
     private boolean destroyed;
     //variables to store number of resources dropped after destroying the asteroid
     private int stone;
     private int iron;
+    private Rectangle bounds;
 
     public Asteroid(int initRadius){
-        pos = new Pair();
-        vel = new Pair();
+        pos = new Pair(-5000 + Math.random()*10000, -5000 + Math.random()*10000);
+        int mult1 = (Math.random()>.5) ? 1: -1;
+        int mult2 = (Math.random()>.5) ? 1: -1;
+        vel = new Pair(mult1*(20 + Math.random()*100), mult2*(20+Math.random()*100));
+        System.out.println("Asteroid position: (" + pos.x+ ", "+pos.y+" )");
         accel=new Pair();
         radius = initRadius;
         destroyed= false;
@@ -232,12 +236,31 @@ class Asteroid extends SpaceObject{
         stone = (int)(Math.random()*8+this.radius/3);
         //making iron more rare than stone here
         iron = (int)(Math.random()*4);
+        bounds = new Rectangle((int)pos.x, (int)pos.y, radius*2,radius*2);
     }
 
     @Override
     public void draw(Graphics g){
         g.setColor(Color.gray);
-        g.fillOval(-400, -400, 100, 100);
+        g.fillOval((int)pos.x, (int)pos.y, radius, radius);
+    }
+
+    @Override
+    public void update(Game g, double time) {
+        pos = pos.add(vel.times(time));
+    }
+
+    public void setPos(Pair a){
+        pos=a;
+    }
+    @Override
+    public void move(int dir) {
+      
+    }
+
+    @Override
+    public void stopMove(int dir) {
+        
     }
 
 }
