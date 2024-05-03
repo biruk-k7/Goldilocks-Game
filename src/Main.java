@@ -24,8 +24,6 @@ public class Main extends JPanel implements KeyListener, MouseListener{
     public static final int GAME_RUNNING = 1;
     public static final int GAME_OVER = 2;
     public static boolean isIntroScreen = false;
-    public static boolean isIntroAnimation = false;
-    
 
     //main storage variables for the size of the world
     public static final int GAME_WIDTH = 10000;
@@ -87,8 +85,12 @@ public class Main extends JPanel implements KeyListener, MouseListener{
         public void run() {
             while(true){
                 
-                
-                steveGame.updateGame(1.0 / (double)FPS);
+                if(isIntroScreen){
+                    steveGame.updateIntroScreen(1.0 / (double) FPS);
+                }else{
+                    steveGame.updateGame(1.0 / (double)FPS);
+                }
+
                 
 
                 repaint();
@@ -204,7 +206,7 @@ public class Main extends JPanel implements KeyListener, MouseListener{
     
         //"infinite" world
         g2d.setColor(Color.BLACK);
-        g2d.fillRect(-5000, -5000,steveGame.HEIGHT, steveGame.WIDTH);
+        g2d.fillRect(-50000, -50000, 100000, 100000);
         if(isIntroScreen){steveGame.introScreen.draw(g);}
         else{steveGame.background.drawBackground(g);
         steveGame.drawPlayers(g);}
@@ -236,8 +238,9 @@ class Game{
     public Background background;
     public StarterPlanet starterPlanet;
     public ArrayList<Planet> planets;
-    //public ArrayList<Planet> asteroids;
-    //Asteroid asteroid;
+    public ArrayList<Asteroid> asteroids;
+   
+  
     
 
     public Game(){
@@ -254,8 +257,7 @@ class Game{
 
         starterPlanet = new StarterPlanet();
 
-        //asteroid = new Asteroid();
-        //asteroid.setPos(new Pair(-400, -400));
+        asteroids = initAsteroids(100);
 
         testPlanet.setPos(new Pair(-300,-300));
     
@@ -304,11 +306,16 @@ class Game{
         return false;
     }
 
-
-    public void initializeAsteroids(){
-
-        //asteroids.add(new Asteroid());
+    public ArrayList<Asteroid> initAsteroids(int n){
+        ArrayList<Asteroid> a = new ArrayList<Asteroid>();
+        for (int i=0; i<n; i++){
+            a.add(new Asteroid((int)(30+Math.random()*25)));
+            
+        }
+        return a;
     }
+
+   
 
 
     public void updateGame(double time){
@@ -318,6 +325,9 @@ class Game{
           }
         steve.update(this, time);
         cam.update(this, time);
+        for(Asteroid b: asteroids){
+            b.update(this, time);
+        }
 
         if(steve.getFuel() <= 1){
             cam.velocity.x = 0;
@@ -329,12 +339,13 @@ class Game{
     }
 
     public void drawPlayers(Graphics g){
-      
         drawPlanets(g);
         starterPlanet.drawStarterPlanet(g);
         steve.drawFuelCapacity(g);
         villager.draw(g);
-        //drawAsteroids(g);
+        for (Asteroid a : asteroids){
+            a.draw(g);
+        }
 
         for(Bullet bullet: steve.bullets){
 
@@ -362,6 +373,12 @@ class Game{
     public void drawAsteroids(Graphics g){
 
         //asteroid.draw(g);
+    }
+
+ 
+
+    public void updateIntroScreen(double time){
+
     }
 
 
