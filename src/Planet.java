@@ -259,6 +259,7 @@ class Asteroid extends SpaceObject implements Movable{
     public void update(Game g, double time) {
         pos = pos.add(vel.times(time));
         
+        //the following was helpful to avoid  concurrent modification exception. https://www.youtube.com/watch?v=83Omy_C8t24&t=340s
         Iterator<Bullet> bulletIterator = g.steve.bullets.iterator();
         while (bulletIterator.hasNext()) {
             Bullet a = bulletIterator.next();
