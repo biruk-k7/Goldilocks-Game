@@ -74,6 +74,8 @@ public class Player extends Character implements Movable{
         if(!isOnPlanet){
         this.currentFuel -= fuelDrain;
         }
+        if(currentFuel<5)
+        refuel();
     }
 
     public int getSpaceshipLevel(){
@@ -253,20 +255,22 @@ class Bullet{
              break;
        }
 
-       Iterator<Asteroid> asteroidIterator = g.asteroids.iterator();
-while (asteroidIterator.hasNext()) {
-    Asteroid a = asteroidIterator.next();
-    double dist = Math.sqrt(Math.pow((a.pos.x + a.radius) - (position.x + radius / 2), 2) +
+
+    //the following was helpful to avoid  concurrent modification exception. https://www.youtube.com/watch?v=83Omy_C8t24&t=340s
+    Iterator<Asteroid> asteroidIterator = g.asteroids.iterator();
+    while (asteroidIterator.hasNext()) {
+        Asteroid a = asteroidIterator.next();
+        double dist = Math.sqrt(Math.pow((a.pos.x + a.radius) - (position.x + radius / 2), 2) +
             Math.pow((a.pos.y + a.radius) - (position.y + radius / 2), 2));
-    if (dist < 20&&!used) {
-        asteroidIterator.remove(); 
-        this.used =true;
-        g.steve.fuelCollected  += 2;
+        if (dist < 20&&!used) {
+              asteroidIterator.remove(); 
+             this.used =true;
+             g.steve.fuelCollected  += 2;
+         }
     }
-}
 
           
-     }
+ }
 
      
        

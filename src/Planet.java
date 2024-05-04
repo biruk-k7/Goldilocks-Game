@@ -249,7 +249,7 @@ class Asteroid extends SpaceObject implements Movable{
       if(!destroyed){
         
                  g.drawImage(texture,(int)pos.x, (int)pos.y, null);
-                 g.drawRect((int)pos.x, (int)pos.y, radius, radius);
+                 
        }
     }
 
@@ -267,7 +267,8 @@ class Asteroid extends SpaceObject implements Movable{
                     Math.pow((a.position.y + a.radius) - (pos.y + radius / 2), 2));
             if (dist < 20&&!destroyed) {
                 destroyed = true;
-               g.steve.fuelCollected  +=2;
+                bulletIterator.remove();
+                g.steve.fuelCollected  +=2;
                 System.out.println("Collected: " +  g.steve.fuelCollected);
              
 
@@ -276,7 +277,7 @@ class Asteroid extends SpaceObject implements Movable{
         
             
               
-         }
+     }
     
 
 
