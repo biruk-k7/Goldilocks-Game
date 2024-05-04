@@ -19,7 +19,7 @@ public class Player extends Character implements Movable{
     private Image spaceship;
     private Image astronaut;
     private double fuelCapacity;
-    public double fuelCollected;
+    public int fuelCollected;
     private double currentFuel;
     private int spaceshipLevel;
     private Rectangle bounds;
