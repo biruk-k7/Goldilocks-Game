@@ -8,8 +8,6 @@ public class Camera implements Movable{
         position = pos;
 
         velocity = new Pair();
-
-
     }
 
     public void setPos(Pair a){

@@ -26,6 +26,7 @@ public class Main extends JPanel implements KeyListener, MouseListener{
     public static final int GAME_RUNNING = 1;
     public static final int GAME_OVER = 2;
     public static boolean isIntroScreen = false;
+    public static boolean isIntroAnimation = true;
 
     //main storage variables for the size of the world
     public static final int GAME_WIDTH = 10000;
@@ -87,13 +88,9 @@ public class Main extends JPanel implements KeyListener, MouseListener{
         public void run() {
             while(true){
                 
-                if(isIntroScreen){
-                    steveGame.updateIntroScreen(1.0 / (double) FPS);
-                }else{
-                    steveGame.updateGame(1.0 / (double)FPS);
+                if(!isIntroAnimation){
+                    steveGame.updateGame(1.0 / (double)FPS); 
                 }
-
-                
 
                 repaint();
                 try{
@@ -170,8 +167,17 @@ public class Main extends JPanel implements KeyListener, MouseListener{
     //method to handle key types
     public void keyTyped(KeyEvent e) {
     	char c = e.getKeyChar();
+
+        if(isIntroAnimation){
+            if(c == 'k'){
+                steveGame.introAnimation.continueCounter++;
+            }
+
+            if(steveGame.introAnimation.continueCounter == 9){
+                isIntroAnimation = false;
+            }
+        }
     }
-    
     
     public void addNotify() {
         super.addNotify();
@@ -199,23 +205,23 @@ public class Main extends JPanel implements KeyListener, MouseListener{
     }   
 
     public void paintComponent(Graphics g) {
-        //draw the screen and the player
-        super.paintComponent(g);    
         
-        //this simulates the camera movement
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.translate(-steveGame.cam.position.x, -steveGame.cam.position.y);
-    
-        //"infinite" world
-        g2d.setColor(Color.BLACK);
-        g2d.fillRect(-50000, -50000, 100000, 100000);
         if(isIntroScreen){steveGame.introScreen.draw(g);}
-        else{steveGame.background.drawBackground(g);
-        steveGame.drawPlayers(g);}
+        else if(isIntroAnimation){steveGame.introAnimation.draw(g);}
+        else{
+            //draw the screen and the player
+            super.paintComponent(g); 
+            Graphics2D g2d = (Graphics2D) g;
+            //this simulates the camera movement
+            g2d.translate(-steveGame.cam.position.x, -steveGame.cam.position.y);
+            //"infinite" world
+            g2d.setColor(Color.BLACK);
+            g2d.fillRect(-50000, -50000, 100000, 100000);
+            steveGame.background.drawBackground(g);
+            steveGame.drawPlayers(g);
+        }
         
     }
-
-   
     
 }
 
@@ -236,6 +242,7 @@ class Game{
 
     public Camera cam;
     public IntroScreen introScreen;
+    public IntroAnimation introAnimation;
     public WorldNoise worldNoise;
     public Background background;
     public StarterPlanet starterPlanet;
@@ -246,13 +253,13 @@ class Game{
     
 
     public Game(){
-      
 
         steve = new Player(0, 0);
         villager = new Villager(new Pair(0,0));
         cam = new Camera(new Pair(-Main.WIDTH/2,-Main.HEIGHT/2));
         planets = new ArrayList<Planet>();
         introScreen = new IntroScreen(WIDTH, HEIGHT);
+        introAnimation = new IntroAnimation(WIDTH, HEIGHT);
 
         //testing planet
         testPlanet = new Planet(17);
@@ -317,11 +324,9 @@ class Game{
         return a;
     }
 
-   
-
-
     public void updateGame(double time){
         villager.updateAI(this, time);
+        
         //checkCollisions();
         
         for(Bullet bullet:steve.bullets){
@@ -337,15 +342,10 @@ class Game{
             cam.velocity.x = 0;
             cam.velocity.y = 0;
             steve.vel.x = 0;
-            
             steve.vel.y = 0;
         }
         
-    }
-  
-    
-   
-    
+    } 
 
     public void drawPlayers(Graphics g){
         drawPlanets(g);
@@ -378,17 +378,9 @@ class Game{
 
     }
 
-
     public void drawAsteroids(Graphics g){
 
         //asteroid.draw(g);
     }
-
- 
-
-    public void updateIntroScreen(double time){
-
-    }
-
 
 }
