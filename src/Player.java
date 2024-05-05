@@ -228,7 +228,7 @@ class Bullet{
     private Rectangle bounds;
  
     public Bullet(double x, double y, double targetX, double targetY){
-        position =  new Pair(x-5, y-5);
+        position =  new Pair(x-3, y-3);
         //calculating unit velocity vector to point where the player clicked
         targetX-=Main.WIDTH/2;
         targetY-=Main.HEIGHT/2;
@@ -240,7 +240,7 @@ class Bullet{
         targetY*=k;
 
         velocity= new Pair(targetX,targetY);
-        radius=5;
+        radius=3;
         bounds=new Rectangle((int)position.x, (int)position.y,2*radius,2*radius);
 
     
@@ -260,8 +260,8 @@ class Bullet{
     Iterator<Asteroid> asteroidIterator = g.asteroids.iterator();
     while (asteroidIterator.hasNext()) {
         Asteroid a = asteroidIterator.next();
-        double dist = Math.sqrt(Math.pow((a.pos.x + a.radius) - (position.x + radius / 2), 2) +
-            Math.pow((a.pos.y + a.radius) - (position.y + radius / 2), 2));
+        double dist = Math.sqrt(Math.pow((a.pos.x + a.radius) - (position.x + radius ), 2) +
+            Math.pow((a.pos.y + a.radius) - (position.y + radius ), 2));
         if (dist < 20&&!used) {
               asteroidIterator.remove(); 
              this.used =true;
