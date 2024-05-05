@@ -94,9 +94,9 @@ public class IntroAnimation extends JPanel {
         //System.out.println(continueCounter);
 
         //debugging tools
-        g.setColor(Color.PINK);
-        g.drawLine(width/2, 0, width/2, height);
-        g.drawLine(-width/2, 0, width/2, 0);
+        // g.setColor(Color.PINK);
+        // g.drawLine(width/2, 0, width/2, height);
+        // g.drawLine(-width/2, 0, width/2, 0);
         //end debugging
     }
 }

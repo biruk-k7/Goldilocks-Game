@@ -19,13 +19,13 @@ import java.awt.Toolkit;
 
 
 
-public class Main extends JPanel implements KeyListener, MouseListener{
+public class Main extends JPanel implements KeyListener, MouseListener, MouseMotionListener{
 
     //store the state of the game 
     public static final int START_SCREEN = 0;
     public static final int GAME_RUNNING = 1;
     public static final int GAME_OVER = 2;
-    public static boolean isIntroScreen = false;
+    public static boolean isIntroScreen = true;
     public static boolean isIntroAnimation = true;
 
     //main storage variables for the size of the world
@@ -53,6 +53,7 @@ public class Main extends JPanel implements KeyListener, MouseListener{
         //add listeners 
         addKeyListener(this);
         addMouseListener(this);
+        addMouseMotionListener(this);
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         //start thread
         Thread mainThread = new Thread(new Runner());
@@ -87,6 +88,8 @@ public class Main extends JPanel implements KeyListener, MouseListener{
         //the thread class
         public void run() {
             while(true){
+
+                if(isIntroScreen){steveGame.introScreen.updateIntroScreen();}
                 
                 if(!isIntroAnimation && !isIntroScreen){
                     steveGame.updateGame(1.0 / (double)FPS); 
@@ -185,7 +188,23 @@ public class Main extends JPanel implements KeyListener, MouseListener{
     }
 
     public void mousePressed(MouseEvent e){
+        int mouse_x = e.getX();
+        int mouse_y = e.getY();
+    
+        //Coding for the Play Button & Quit Button
+        if(isIntroScreen){
+            if(mouse_x >= WIDTH/2 - 100 && mouse_x <= WIDTH/2 + 100){
+                if(mouse_y >= HEIGHT/2 + 50 && mouse_y <= HEIGHT/2 + 150){
+                    isIntroScreen = false;
+                    isIntroAnimation = true;
+                    
+                }else if(mouse_y >= HEIGHT/2 + 150 && mouse_y <= HEIGHT/2 + 250){
+                    System.exit(1);
+                }
+            }
 
+            
+        } 
     }
 
     public void mouseReleased(MouseEvent e){
@@ -193,7 +212,7 @@ public class Main extends JPanel implements KeyListener, MouseListener{
     }
     
     public void mouseEntered(MouseEvent e){
-
+       
     }
 
     public void mouseExited(MouseEvent e){
@@ -222,6 +241,40 @@ public class Main extends JPanel implements KeyListener, MouseListener{
         }
         
     }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        int mouse_x = e.getX();
+        int mouse_y = e.getY();
+        
+        if(isIntroScreen){
+            if(mouse_x >= WIDTH/2 - 100 && mouse_x <= WIDTH/2 + 100){
+                if(mouse_y >= HEIGHT/2 + 50 && mouse_y <= HEIGHT/2 + 150){
+                    steveGame.introScreen.menuButton1 = Color.yellow;
+                    steveGame.introScreen.menuButton2 = Color.white;
+                    steveGame.introScreen.widthBox = 2.5*100;
+                    steveGame.introScreen.buttonx1 = WIDTH/2 - 116;
+                    
+                }else if(mouse_y >= HEIGHT/2 + 150 && mouse_y <= HEIGHT/2 + 250){
+                    steveGame.introScreen.menuButton1 = Color.white;
+                    steveGame.introScreen.menuButton2 = Color.red;
+                    steveGame.introScreen.widthBox = 2*100;
+                    steveGame.introScreen.buttonx1 = 1920/2 - 200;
+                    
+                }
+            }else{
+                steveGame.introScreen.menuButton1 = Color.white;
+                steveGame.introScreen.menuButton2 = Color.white;
+                steveGame.introScreen.widthBox = 2*100;
+                steveGame.introScreen.buttonx1 = 1920/2 - 200;
+                
+            }
+        }
+    }
     
 }
 
@@ -248,9 +301,6 @@ class Game{
     public StarterPlanet starterPlanet;
     public ArrayList<Planet> planets;
     public ArrayList<Asteroid> asteroids;
-   
-  
-    
 
     public Game(){
 
@@ -294,9 +344,7 @@ class Game{
                     //if planwt doesnt overlap, set position offset for image
                     while (checkTotalOverlap(toAdd)){
                         toAdd.setPos(new Pair(toAdd.getX()+toAdd.getImage().getHeight(null), toAdd.getY()+toAdd.getImage().getHeight(null)));
-                    
                     }
-
                     planets.add(toAdd);
                 }
                
