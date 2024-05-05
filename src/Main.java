@@ -185,7 +185,6 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     public void mousePressed(MouseEvent e){
         int mouse_x = e.getX();
         int mouse_y = e.getY();
-        System.out.println("Mouse x: "+mouse_x+ " Mouse y: " + mouse_y);
     
         //Coding for the Play Button & Quit Button
         if(isIntroScreen){
@@ -387,6 +386,8 @@ class Game{
         cam.update(this, time);
         for(Asteroid a: asteroids){
             a.update(this, time);
+            //making a new asteroid when one is destroyed
+            if (a.destroyed) a=new Asteroid((int)(30+Math.random()*25));
         }
 
         if(steve.getFuel() <= 1){
@@ -429,9 +430,5 @@ class Game{
 
     }
 
-    public void drawAsteroids(Graphics g){
-
-        //asteroid.draw(g);
-    }
 
 }

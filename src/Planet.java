@@ -220,8 +220,6 @@ class Asteroid extends SpaceObject implements Movable{
 
     public boolean destroyed;
     //variables to store number of resources dropped after destroying the asteroid
-    private int stone;
-    private int iron;
     private Rectangle bounds;
     private Image texture;
 
@@ -233,10 +231,7 @@ class Asteroid extends SpaceObject implements Movable{
         accel=new Pair();
         radius = initRadius;
         destroyed= false;
-        //i set it to 0 through 8 for now plus smt proportional to radius
-        stone = (int)(Math.random()*8+this.radius/3);
-        //making iron more rare than stone here
-        iron = (int)(Math.random()*4);
+
         bounds = new Rectangle((int)pos.x, (int)pos.y, radius, radius);
         texture = new ImageIcon("./assets/player/asteroid1.png").getImage();
         texture = texture.getScaledInstance(radius+5, radius, Image.SCALE_DEFAULT);
@@ -248,16 +243,18 @@ class Asteroid extends SpaceObject implements Movable{
     public void draw(Graphics g){
       if(!destroyed){
         
-                 g.drawImage(texture,(int)pos.x, (int)pos.y, null);
+        g.drawImage(texture,(int)pos.x, (int)pos.y, null);
                  
        }
     }
 
     @Override
-
-   
     public void update(Game g, double time) {
         pos = pos.add(vel.times(time));
+        //making the asteroids respawn if they are out of bounds for the world
+        if(pos.x>5000 || pos.x<-5000 || pos.y>5000 || pos.y<-5000){
+            destroyed=true;
+        }
         
         //the following was helpful to avoid  concurrent modification exception. https://www.youtube.com/watch?v=83Omy_C8t24&t=340s
         Iterator<Bullet> bulletIterator = g.steve.bullets.iterator();
@@ -274,6 +271,8 @@ class Asteroid extends SpaceObject implements Movable{
 
             }
         }
+
+    
         
             
               

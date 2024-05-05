@@ -234,7 +234,7 @@ class Bullet{
         targetY-=Main.HEIGHT/2;
         double magnitude  = Math.sqrt(Math.pow(targetX,2)+ Math.pow(targetY, 2));
         //finding propotionality constant between similar trriangles to keep the speed at 200 units
-        double k = 200/magnitude;
+        double k = 300/magnitude;
        
         targetX*=k;
         targetY*=k;
