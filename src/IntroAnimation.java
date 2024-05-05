@@ -72,8 +72,9 @@ public class IntroAnimation extends JPanel {
         }
         
         if(continueCounter == 5){
-            g.drawString("break asteroids with", width/2 + 170, height/2 - 210);
-            g.drawString("[space] to get fuel", width/2 + 180, height/2 - 180);
+            g.drawString("aim with mouse left click ", width/2 + 140, height/2 - 210);
+            g.drawString("to shoot to break asteroids", width/2 + 140, height/2 - 180);
+            g.drawString("to get fuel", width/2 + 140, height/2 - 150);
         }
 
         if(continueCounter == 6){
