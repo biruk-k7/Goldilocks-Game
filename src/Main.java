@@ -189,12 +189,12 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     
         //Coding for the Play Button & Quit Button
         if(isIntroScreen){
-            if(mouse_x >= WIDTH/2 - 100 && mouse_x <= WIDTH/2 + 100){
-                if(mouse_y >= HEIGHT/2 + 50 && mouse_y <= HEIGHT/2 + 150){
+            if(mouse_x >= Main.WIDTH/2 - 100 && mouse_x <= Main.WIDTH/2 + 100){
+                if(mouse_y >= Main.HEIGHT/2 + 50 && mouse_y <= Main.HEIGHT/2 + 150){
                     isIntroScreen = false;
                     isIntroAnimation = true;
                     
-                }else if(mouse_y >= HEIGHT/2 + 150 && mouse_y <= HEIGHT/2 + 250){
+                }else if(mouse_y >= Main.HEIGHT/2 + 150 && mouse_y <= Main.HEIGHT/2 + 250){
                     System.exit(1);
                 }
             }
@@ -255,25 +255,25 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         int mouse_y = e.getY();
         
         if(isIntroScreen){
-            if(mouse_x >= WIDTH/2 - 100 && mouse_x <= WIDTH/2 + 100){
-                if(mouse_y >= HEIGHT/2 + 50 && mouse_y <= HEIGHT/2 + 150){
+            if(mouse_x >= Main.WIDTH/2 - 100 && mouse_x <= Main.WIDTH/2 + 100){
+                if(mouse_y >= Main.HEIGHT/2 + 50 && mouse_y <= Main.HEIGHT/2 + 150){
                     steveGame.introScreen.menuButton1 = Color.yellow;
                     steveGame.introScreen.menuButton2 = Color.white;
                     steveGame.introScreen.widthBox = 2.5*100;
-                    steveGame.introScreen.buttonx1 = WIDTH/2 - 116;
+                    steveGame.introScreen.buttonx1 = Main.WIDTH/2 - 116;
                     
-                }else if(mouse_y >= HEIGHT/2 + 150 && mouse_y <= HEIGHT/2 + 250){
+                }else if(mouse_y >= HEIGHT/2 + 150 && mouse_y <= Main.HEIGHT/2 + 250){
                     steveGame.introScreen.menuButton1 = Color.white;
                     steveGame.introScreen.menuButton2 = Color.red;
                     steveGame.introScreen.widthBox = 2*100;
-                    steveGame.introScreen.buttonx1 = 1920/2 - 200;
+                    steveGame.introScreen.buttonx1 = Main.WIDTH/2 - 200;
                     
                 }
             }else{
                 steveGame.introScreen.menuButton1 = Color.white;
                 steveGame.introScreen.menuButton2 = Color.white;
                 steveGame.introScreen.widthBox = 2*100;
-                steveGame.introScreen.buttonx1 = 1920/2 - 200;
+                steveGame.introScreen.buttonx1 = Main.WIDTH/2 - 200;
                 
             }
         }
@@ -312,7 +312,7 @@ class Game{
         cam = new Camera(new Pair(-Main.WIDTH/2,-Main.HEIGHT/2));
         planets = new ArrayList<Planet>();
         introScreen = new IntroScreen(Main.WIDTH, Main.HEIGHT);
-        introAnimation = new IntroAnimation(WIDTH, HEIGHT);
+        introAnimation = new IntroAnimation(Main.WIDTH,Main.HEIGHT);
 
         //testing planet
         testPlanet = new Planet(17);
