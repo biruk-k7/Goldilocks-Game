@@ -212,8 +212,8 @@ public class Player extends Character implements Movable{
 
    
 
-public void shoot(int d){
-    bullets.add(new Bullet(position.x, position.y, d));
+public void shoot(double targetX, double targetY){
+    bullets.add(new Bullet(position.x, position.y, targetX, targetY));
 }
   
    
@@ -226,34 +226,34 @@ class Bullet{
     int radius;
     public boolean used;
     private Rectangle bounds;
-    final int direction;
-    
-    public Bullet(double x, double y, int d){
+ 
+    public Bullet(double x, double y, double targetX, double targetY){
         position =  new Pair(x-5, y-5);
-        velocity= new Pair(200,200);
+        //calculating unit velocity vector to point where the player clicked
+        targetX-=Main.WIDTH/2;
+        targetY-=Main.HEIGHT/2;
+        double magnitude  = Math.sqrt(Math.pow(targetX,2)+ Math.pow(targetY, 2));
+        //finding propotionality constant between similar trriangles to keep the speed at 200 units
+        double k = 200/magnitude;
+       
+        targetX*=k;
+        targetY*=k;
+
+        velocity= new Pair(targetX,targetY);
         radius=5;
         bounds=new Rectangle((int)position.x, (int)position.y,2*radius,2*radius);
-        direction=d;
+
     
         
     }
 
     public void update(Game g, double time){
         
-       switch (direction) {
-        case 0:
-            position.y -= velocity.y*time;
-            break;
-        case 90:
-             position.x+= velocity.x*time;
-            break;
-        case 180:
-            position.y += velocity.y*time;
-            break;
-        case -90:
-             position.x -= velocity.x*time;
-             break;
-       }
+
+        position.y += velocity.y*time;
+        position.x+= velocity.x*time;
+    
+
 
 
     //the following was helpful to avoid  concurrent modification exception. https://www.youtube.com/watch?v=83Omy_C8t24&t=340s

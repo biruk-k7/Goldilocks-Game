@@ -156,11 +156,6 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
                 steveGame.steve.stopMove(3);
                 steveGame.cam.stopMove(3);
                 break;
-            case ' ':
-               if(!steveGame.steve.isOnPlanet(steveGame)){
-                steveGame.steve.shoot(steveGame.rotate);
-               }
-                break;
             case 'f':
               steveGame.steve.refuel();
 
@@ -190,6 +185,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     public void mousePressed(MouseEvent e){
         int mouse_x = e.getX();
         int mouse_y = e.getY();
+        System.out.println("Mouse x: "+mouse_x+ " Mouse y: " + mouse_y);
     
         //Coding for the Play Button & Quit Button
         if(isIntroScreen){
@@ -205,6 +201,12 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
 
             
         } 
+        else{
+            if(!steveGame.steve.isOnPlanet(steveGame)){
+                steveGame.steve.shoot(mouse_x,mouse_y);
+               }
+
+        }
     }
 
     public void mouseReleased(MouseEvent e){
@@ -220,6 +222,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     }
 
     public void mouseClicked(MouseEvent e){
+
 
     }   
 
@@ -308,7 +311,7 @@ class Game{
         villager = new Villager(new Pair(0,0));
         cam = new Camera(new Pair(-Main.WIDTH/2,-Main.HEIGHT/2));
         planets = new ArrayList<Planet>();
-        introScreen = new IntroScreen(WIDTH, HEIGHT);
+        introScreen = new IntroScreen(Main.WIDTH, Main.HEIGHT);
         introAnimation = new IntroAnimation(WIDTH, HEIGHT);
 
         //testing planet
@@ -379,7 +382,7 @@ class Game{
         
         for(Bullet bullet:steve.bullets){
             bullet.update(this, time);
-          }
+        }
         steve.update(this, time);
         cam.update(this, time);
         for(Asteroid a: asteroids){
