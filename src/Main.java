@@ -62,7 +62,7 @@ public class Main extends JPanel implements KeyListener, MouseListener{
     public static void main(String[] args){
 
         //basic game setup
-        JFrame frame = new JFrame("Space Adventure World");
+        JFrame frame = new JFrame("Goldilocks");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Main mainGame = new Main();
         frame.setContentPane(mainGame);
@@ -88,7 +88,7 @@ public class Main extends JPanel implements KeyListener, MouseListener{
         public void run() {
             while(true){
                 
-                if(!isIntroAnimation){
+                if(!isIntroAnimation && !isIntroScreen){
                     steveGame.updateGame(1.0 / (double)FPS); 
                 }
 
@@ -207,8 +207,8 @@ public class Main extends JPanel implements KeyListener, MouseListener{
     public void paintComponent(Graphics g) {
         
         if(isIntroScreen){steveGame.introScreen.draw(g);}
-        else if(isIntroAnimation){steveGame.introAnimation.draw(g);}
-        else{
+        else if(!isIntroScreen && isIntroAnimation){steveGame.introAnimation.draw(g);}
+        else if(!isIntroAnimation && !isIntroScreen){
             //draw the screen and the player
             super.paintComponent(g); 
             Graphics2D g2d = (Graphics2D) g;
