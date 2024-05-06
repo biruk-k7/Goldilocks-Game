@@ -1,4 +1,5 @@
 -implement spaceship upgrade
 -work on start and end screen
+    - off center buttons
 -work on the final goal(getting to a black hole........)
 -professionalize the code(comment and remove unused stuff)
