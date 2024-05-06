@@ -251,7 +251,7 @@ class Asteroid extends SpaceObject implements Movable{
     @Override
     public void update(Game g, double time) {
         pos = pos.add(vel.times(time));
-        //making the asteroids respawn if they are out of bounds for the world
+        //making the asteroids respawn if they are out of bounds 
         if(pos.x>5000 || pos.x<-5000 || pos.y>5000 || pos.y<-5000){
             destroyed=true;
         }
@@ -260,8 +260,8 @@ class Asteroid extends SpaceObject implements Movable{
         Iterator<Bullet> bulletIterator = g.steve.bullets.iterator();
         while (bulletIterator.hasNext()) {
             Bullet a = bulletIterator.next();
-            double dist = Math.sqrt(Math.pow((a.position.x + a.radius) - (pos.x + radius), 2) +
-                    Math.pow((a.position.y + a.radius) - (pos.y + radius), 2));
+            double dist = Math.sqrt(Math.pow((a.position.x + a.radius) - (pos.x + radius / 2), 2) +
+                    Math.pow((a.position.y + a.radius) - (pos.y + radius / 2), 2));
             if (dist < 20&&!destroyed) {
                 destroyed = true;
                 bulletIterator.remove();
