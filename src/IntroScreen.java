@@ -33,9 +33,9 @@ public class IntroScreen extends JPanel implements MouseListener {
         width = WIDTH;
         height = HEIGHT;
 
-        buttonx1 =  width/2 - 200;
+        buttonx1 =  width/2 - 100;
         buttony1 =  height/2 + 100;
-        buttonx2 =  width/2 - 200;
+        buttonx2 =  width/2 - 100;
         buttony2 =  height/2 + 200;
         widthBox = 2*100;
         heightBox = 50;
@@ -53,7 +53,7 @@ public class IntroScreen extends JPanel implements MouseListener {
     public void draw(Graphics g){
         g.setColor(Color.black);
 
-        g.drawImage(bacImage, -100, 0, null);
+        g.drawImage(bacImage, 0, 0, null);
 
         String fontFile = "GameFont.ttf";
         Font customFont = null;
