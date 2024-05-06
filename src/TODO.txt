@@ -1,5 +1,3 @@
--get asteroids to work
--implement fuel and resource collection
 -implement spaceship upgrade
 -work on start and end screen
 -work on the final goal(getting to a black hole........)
