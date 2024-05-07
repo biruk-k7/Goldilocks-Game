@@ -261,7 +261,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
             
         } 
         else{
-            if(!steveGame.steve.isOnPlanet(steveGame)){
+            if(!steveGame.steve.isOnPlanet(steveGame) && steveGame.steve.canShoot){
                 steveGame.steve.shoot(mouse_x,mouse_y);
                }
 
@@ -521,6 +521,9 @@ class Game{
             cam.velocity.y = 0;
             steve.vel.x = 0;
             steve.vel.y = 0;
+            steve.canShoot=false;
+
+            clip.stop();
         }
         
     } 

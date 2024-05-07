@@ -24,6 +24,7 @@ public class Player extends Character implements Movable{
     private int spaceshipLevel;
     private Rectangle bounds;
     public ArrayList<Bullet> bullets = new ArrayList<Bullet>();
+    public boolean canShoot;
 
     private boolean isSpaceship = false;
  
@@ -40,6 +41,7 @@ public class Player extends Character implements Movable{
         this.currentFuel = 10;
         this.spaceshipLevel = 1; 
         bounds = new Rectangle((int)position.x, (int)position.y, 50, 50);
+        canShoot=true;
 
 
     }
@@ -211,7 +213,9 @@ public class Player extends Character implements Movable{
    
 
 public void shoot(double targetX, double targetY){
+    if(canShoot){
     bullets.add(new Bullet(position.x, position.y, targetX, targetY));
+    }
 }
   
    
