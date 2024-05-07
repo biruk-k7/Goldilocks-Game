@@ -5,9 +5,9 @@ import java.awt.Rectangle;
 public abstract class SpaceObject {
 
     public int radius;
-    protected Pair pos;
-    protected Pair vel;
-    protected Pair accel;
+    public  Pair pos;
+    public Pair vel;
+    public Pair accel;
     Rectangle bounds;
     Image texture;
     

@@ -242,7 +242,6 @@ class Asteroid extends SpaceObject implements Movable{
         int mult1 = (Math.random()>.5) ? 1: -1;
         int mult2 = (Math.random()>.5) ? 1: -1;
         vel = new Pair(mult1*(20 + Math.random()*100), mult2*(20+Math.random()*100));
-        accel=new Pair();
         radius = initRadius;
         destroyed= false;
 
@@ -314,8 +313,7 @@ class Asteroid extends SpaceObject implements Movable{
 class Goldilocks extends Planet{
 
     private Image goldilocksPlanet;
-    private Image alien;
-    
+    private Image villager;
 
     public Goldilocks(){
         super(10);

@@ -22,7 +22,7 @@ public class IntroAnimation extends JPanel {
         background = new ImageIcon("assets\\IntroAnimation\\background.png").getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT);
 
         textbox = new ImageIcon("assets\\IntroAnimation\\textbox.png").getImage();
-        textbox = textbox.getScaledInstance(width/2+100, height/2, Image.SCALE_DEFAULT);
+        textbox = textbox.getScaledInstance(width/2+150, height/2, Image.SCALE_DEFAULT);
 
         wizardude = new ImageIcon("assets\\IntroAnimation\\wizarddude.png").getImage().getScaledInstance(width, height,Image.SCALE_DEFAULT);
         
@@ -51,45 +51,45 @@ public class IntroAnimation extends JPanel {
         g.setColor(Color.black);
 
         if(continueCounter == 0){
-            g.drawString("Hello, Young One", width/2 + 200, height/2 - 200);
+            g.drawString("Hello, Young One", width/2 + 160, height/2 - 210);
         }
 
         if(continueCounter == 1){
-            g.drawString("Glad to see you woke up", width/2 + 160, height/2-200);
+            g.drawString("Glad to see you woke up", width/2 + 160, height/2-210);
         }
 
         if(continueCounter == 2){
-            g.drawString("I know you're lost", width/2 + 200, height/2 - 200);
+            g.drawString("I know you're lost", width/2 + 160, height/2 - 210);
         }
 
         if(continueCounter == 3){
-            g.drawString("...that's a you problem", width/2 + 170, height/2 - 200);
+            g.drawString("...that's a you problem", width/2 + 160, height/2 - 210);
         }
 
         if(continueCounter == 4){
-            g.drawString("So you're going to", width/2 + 200, height/2 - 210);
-            g.drawString("explore the galaxy", width/2 + 200, height/2 - 180);
+            g.drawString("So you're going to", width/2 + 160, height/2 - 210);
+            g.drawString("explore the galaxy", width/2 + 160, height/2 - 180);
         }
         
         if(continueCounter == 5){
-            g.drawString("aim with mouse left click ", width/2 + 140, height/2 - 210);
-            g.drawString("to shoot to break asteroids", width/2 + 140, height/2 - 180);
-            g.drawString("to get fuel", width/2 + 140, height/2 - 150);
+            g.drawString("aim with mouse left click ", width/2 + 160, height/2 - 210);
+            g.drawString("to shoot to break asteroids", width/2 + 160, height/2 - 180);
+            g.drawString("to get fuel", width/2 + 160, height/2 -150);
         }
 
         if(continueCounter == 6){
-            g.drawString("and explore planets", width/2 + 170, height/2 - 210);
-            g.drawString("for upgrades", width/2 + 170, height/2 - 180);
+            g.drawString("and explore planets", width/2 + 160, height/2 - 210);
+            g.drawString("for upgrades", width/2 + 160, height/2 - 180);
         }
 
         if(continueCounter == 7){
             g.drawString("find the Goldilocks planet", width/2 + 160, height/2 - 210);
-            g.drawString("to save yourself!", width/2 + 170, height/2 - 180);
+            g.drawString("to save yourself!", width/2 + 160, height/2 - 180);
         }
 
         if(continueCounter == 8){
-            g.drawString("okay bye", width/2 + 170, height/2 - 210);
-            g.drawString("i wish you no luck", width/2 + 170, height/2 - 180);
+            g.drawString("okay bye", width/2 + 160, height/2 - 210);
+            g.drawString("i wish you no luck", width/2 + 160, height/2 - 180);
         }
 
         //System.out.println(continueCounter);
