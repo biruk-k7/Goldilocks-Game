@@ -5,9 +5,8 @@ import java.awt.Rectangle;
 public abstract class SpaceObject {
 
     public int radius;
-    protected Pair pos;
-    protected Pair vel;
-    protected Pair accel;
+    public  Pair pos;
+    public Pair vel;
     Rectangle bounds;
     Image texture;
     
@@ -32,9 +31,6 @@ public abstract class SpaceObject {
         return vel;
     }
 
-    public Pair getAccel(){
-        return accel;
-    }
 
     public void setPos(Pair a){
         pos = a;
@@ -45,9 +41,6 @@ public abstract class SpaceObject {
         vel = v;
     }
 
-    public void setAccel(Pair a){
-        accel = a;
-    }
 
     public Pair getCenter(){
 
