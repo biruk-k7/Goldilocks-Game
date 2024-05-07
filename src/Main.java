@@ -309,6 +309,8 @@ class Game{
     public Background background;
     public ArrayList<Planet> planets;
     public ArrayList<Asteroid> asteroids;
+    public Goldilocks goldilocks;
+    public boolean isWinner;
 
     public Game(){
 
@@ -320,7 +322,8 @@ class Game{
         introAnimation = new IntroAnimation(Main.WIDTH,Main.HEIGHT);
         //add start planet
         planets.add(new StarterPlanet());
-        asteroids = initAsteroids(100);
+        asteroids = initAsteroids(200);
+        isWinner=false;
 
     
        
@@ -329,7 +332,8 @@ class Game{
 
         background = new Background(10000, 10000);
         //add end planet
-        planets.add(new Goldilocks());
+        goldilocks=new Goldilocks();
+        planets.add(goldilocks);
         //generate planets
         for(int i = 0; i < worldNoise.noise.length; i++){
             for(int j = 0; j < worldNoise.noise.length; j++){
@@ -379,19 +383,26 @@ class Game{
     }
 
     public void updateGame(double time){
+
+        if(goldilocks.getBounds().intersects(steve.getBounds())){
+            isWinner=true;
+            System.out.println("you win");
+        }
+
         villager.updateAI(this, time);
-        
-        //checkCollisions();
         
         for(Bullet bullet:steve.bullets){
             bullet.update(this, time);
+
         }
         steve.update(this, time);
         cam.update(this, time);
         for(Asteroid a: asteroids){
             a.update(this, time);
             //making a new asteroid when one is destroyed
-            if (a.destroyed) a=new Asteroid((int)(30+Math.random()*25));
+            if (a.destroyed){
+                a=new Asteroid((int)(30+Math.random()*25));
+            }
         }
 
         if(steve.getFuel() <= 1){

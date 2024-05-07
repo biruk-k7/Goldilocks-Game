@@ -102,12 +102,11 @@ public class Player extends Character implements Movable{
 
         if(isSpaceship){
             g.drawImage(spaceship, (int)position.x - 25, (int)position.y - 25, null);
-            //g.drawRect((int)position.x-25, (int)position.y-25, spaceship.getWidth(null)-15, spaceship.getHeight(null)-15);
-            //g.drawRect((int)position.x-150, (int)position.y-150, 300, 300);
+       
         } 
         else {
             g.drawImage(astronaut, (int)position.x - 25, (int)position.y - 25, null);
-            //g.drawRect((int)position.x-10, (int)position.y-10, 20, 20);
+
         }
 
 
@@ -201,6 +200,7 @@ public class Player extends Character implements Movable{
             if (this.bounds.intersects(s.getBounds())){
             
                 return true;
+
             }
             
         }
