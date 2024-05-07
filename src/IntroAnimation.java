@@ -19,12 +19,12 @@ public class IntroAnimation extends JPanel {
         this.width = WIDTH;
         this.height = HEIGHT;
 
-        background = new ImageIcon("assets\\IntroAnimation\\background.png").getImage();
+        background = new ImageIcon("assets\\IntroAnimation\\background.png").getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT);
 
         textbox = new ImageIcon("assets\\IntroAnimation\\textbox.png").getImage();
-        textbox = textbox.getScaledInstance(16*70, 9*70, Image.SCALE_DEFAULT);
+        textbox = textbox.getScaledInstance(width/2+100, height/2, Image.SCALE_DEFAULT);
 
-        wizardude = new ImageIcon("assets\\IntroAnimation\\wizarddude.png").getImage();
+        wizardude = new ImageIcon("assets\\IntroAnimation\\wizarddude.png").getImage().getScaledInstance(width, height,Image.SCALE_DEFAULT);
         
         String fontFile = "GameFont.ttf";
         gameFont = null;
@@ -41,8 +41,8 @@ public class IntroAnimation extends JPanel {
         g.fillRect(-width/2, -height/2, width, height);
 
         g.drawImage(background, 0, 0, null);
-        g.drawImage(wizardude, 0 - 200, 0, null);
-        g.drawImage(textbox, width/2-200, height/2-500, null);
+        g.drawImage(wizardude, - 200, 0, null);
+        g.drawImage(textbox, width/2-100, height/2-450, null);
         
         g.setFont(gameFont);
         g.setColor(Color.white);
