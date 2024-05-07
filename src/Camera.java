@@ -20,16 +20,16 @@ public class Camera implements Movable{
         switch (dir){
             case 0:
                 
-                velocity.y=-100;
+                velocity.y=-1000;
                 break;
             case 1:
-                velocity.x=-100;
+                velocity.x=-1000;
                 break;
             case 2:
-                velocity.y=100;
+                velocity.y=1000;
                 break;
             case 3:
-                velocity.x=100;
+                velocity.x=1000;
                 
         }
     

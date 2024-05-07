@@ -266,7 +266,6 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
                     steveGame.introScreen.menuButton2 = Color.red;
                     steveGame.introScreen.widthBox = 2*100;
                     steveGame.introScreen.buttonx1 = Main.WIDTH/2 - 100;
-                    
                 }
             }else{
                 steveGame.introScreen.menuButton1 = Color.white;
@@ -300,7 +299,6 @@ class Game{
     public IntroAnimation introAnimation;
     public WorldNoise worldNoise;
     public Background background;
-    public StarterPlanet starterPlanet;
     public ArrayList<Planet> planets;
     public ArrayList<Asteroid> asteroids;
 
@@ -312,22 +310,19 @@ class Game{
         planets = new ArrayList<Planet>();
         introScreen = new IntroScreen(Main.WIDTH, Main.HEIGHT);
         introAnimation = new IntroAnimation(Main.WIDTH,Main.HEIGHT);
-
-        //testing planet
-        testPlanet = new Planet(17);
-
-        starterPlanet = new StarterPlanet();
-
+        //add start planet
+        planets.add(new StarterPlanet());
         asteroids = initAsteroids(100);
 
-        testPlanet.setPos(new Pair(-300,-300));
     
        
         this.worldNoise = new WorldNoise(new Pair(10000,10000), new Pair(0,0));
         worldNoise.generateNoise();
 
         background = new Background(10000, 10000);
-
+        //add end planet
+        planets.add(new Goldilocks());
+        //generate planets
         for(int i = 0; i < worldNoise.noise.length; i++){
             for(int j = 0; j < worldNoise.noise.length; j++){
 
@@ -353,6 +348,7 @@ class Game{
             }
            
         }
+        
       
     }
 
@@ -401,7 +397,6 @@ class Game{
 
     public void drawPlayers(Graphics g){
         drawPlanets(g);
-        starterPlanet.drawStarterPlanet(g);
         steve.drawFuelCapacity(g);
         villager.draw(g);
         for (Asteroid a : asteroids){
