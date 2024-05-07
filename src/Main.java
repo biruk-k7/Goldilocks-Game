@@ -153,7 +153,6 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
                         steveGame.playGoldilocksSound();
                      } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
                      }
-
                 }
                 repaint();
                 try{
@@ -320,6 +319,9 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
             steveGame.background.drawBackground(g);
             steveGame.drawPlayers(g);
         }
+        else if(steveGame.isWinner){
+            steveGame.out
+        }
         
     }
 
@@ -382,6 +384,7 @@ class Game{
     public ArrayList<Asteroid> asteroids;
     public Goldilocks goldilocks;
     public boolean isWinner;
+    public Outro outro;
 
     //music files 
     File file = new File("./assets/Music/track2.wav");
