@@ -45,7 +45,8 @@ public class Planet extends SpaceObject{
     protected double[][] noiseMap;
     protected int planetType;
     private static int countPlanets = 0;
-    //private Image texture;
+    private int resources;
+    private Image resourceImage;
    
 
     public Planet(int initRadius){
@@ -54,7 +55,15 @@ public class Planet extends SpaceObject{
         accel=new Pair();
         radius = initRadius;
         planetType=(int)(Math.random()*6);
+        //if earth is the planet
+        resources=0;
+        resourceImage=null;
+        //if lava is the planet
+        if(planetType==1){
+            resources = (int)(15+Math.random()*15);
+            
 
+        }
 
         noiseMap = new double[2*this.radius + 1][2*this.radius + 1];
 
@@ -152,13 +161,17 @@ public class Planet extends SpaceObject{
     @Override
     public void draw(Graphics g){
 
+        
         g.drawImage(texture, (int)(pos.x), (int)(pos.y), null);
         // g.drawRect((int)pos.x, (int)pos.y, texture.getWidth(null), texture.getHeight(null));
+        if(planetType==1 || planetType == 4){
+            //g.fillOval(reso, planetType, countPlanets, radius);
+        }
     }
 
     //determine colors for the planet based on its type
     public Color planetColorScheme(double alpha){
-    
+        //cyberpunk planet
         if(this.planetType==0){
             if(alpha<.4 &&alpha>0) return new Color( 	242, 56, 230);
             if(alpha>.4 && alpha<.8) return new Color( 	121, 18, 166);
@@ -166,7 +179,7 @@ public class Planet extends SpaceObject{
             if(alpha<-.4) return new Color( 	24, 53, 140);
             if(alpha>.8) return new Color( 	102, 242, 242);
         }
-
+        //lava planet
         if(planetType==1){
             if(alpha<.4 &&alpha>0) return new Color(242, 169, 80);
             if(alpha>.4 && alpha<.8) return new Color(242, 116, 5);
@@ -174,7 +187,7 @@ public class Planet extends SpaceObject{
             if(alpha<-.4) return new Color(191, 38, 4);
             if(alpha>.8) return new Color(89, 16, 10);
         }
-
+        //forest planet
         if(planetType==2){
             if(alpha<.4 &&alpha>0) return new Color(3,65,89);
             if(alpha>.4 && alpha<.8) return new Color(2,89,81);
@@ -182,7 +195,7 @@ public class Planet extends SpaceObject{
             if(alpha<-.4) return new Color(3,140,62);
             if(alpha>.8) return new Color(12,242,93);
         }
-
+        //ice planet
         if(planetType==3){
             if(alpha<.4 &&alpha>0) return new Color(89, 52, 59);
             if(alpha>.4 && alpha<.8) return new Color(215, 215, 217);
@@ -190,7 +203,7 @@ public class Planet extends SpaceObject{
             if(alpha<-.4) return new Color(102, 106, 115);
             if(alpha>.8) return new Color(242, 242, 240);
         }
-
+        //earth
         if(planetType==4){
             //green
             if(alpha<.3 &&alpha>0) return new Color(0,0,220);
@@ -204,6 +217,7 @@ public class Planet extends SpaceObject{
             if(alpha<-.5&& alpha>-.8) return new Color( 0, 0, 128);
             if(alpha<-.8) return new Color(0, 0, 200);
         }
+        //dune planet
         if(planetType==5){
             if(alpha<.4 &&alpha>0) return new Color(166, 155, 134);
             if(alpha>.4 && alpha<.8) return new Color(102, 96, 83);

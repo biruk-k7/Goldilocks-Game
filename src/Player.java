@@ -145,7 +145,6 @@ public class Player extends Character implements Movable{
 
             switch (dir){
                 case 0:
-                    //System.out.println("steve's moving");
                     velocity.y=-100;
                     break;
                 case 1:
@@ -164,7 +163,6 @@ public class Player extends Character implements Movable{
         public void stopMove(int dir){
         switch (dir){
             case 0:
-                //System.out.println("steve's moving");
                 velocity.y=0;
                 break;
             case 1:
