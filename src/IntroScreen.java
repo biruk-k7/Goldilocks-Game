@@ -24,7 +24,7 @@ public class IntroScreen {
     int buttonx2;
     int buttony2;
     double widthBox;
-    int heightBox;
+    double heightBox;
 
     public RoundRectangle2D playButton;
     public RoundRectangle2D quitButton;
