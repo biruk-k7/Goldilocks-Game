@@ -269,28 +269,13 @@ class Bullet{
 
           
  }
-
-     
-       
-       
-
     public Rectangle getBounds(){
         return bounds;
     }
     public void draw(Graphics g){
-       
-        
         if(!used){
             g.setColor(Color.WHITE);
             g.fillOval((int)position.x, (int)position.y, 10,10);
         }
-    
-            
-
-      
-
     }
-
-    
-
 }
