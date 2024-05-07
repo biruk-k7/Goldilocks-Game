@@ -8,4 +8,4 @@ java Main
 
 in the terminal; no command line arguments needed.
 
-After running it, the usage of the program is pretty simple. To control the spaceship, use wasd keys (w: move up, s: move down, d: move right, a: move left). the world will be generated as you go. Other functionality will be added soon :)
+After running it, the usage of the program is pretty simple. To control the spaceship, use WASD keys (w: move up, s: move down, d: move right, a: move left). Aim with your mouse and left click in a direction to shoot bullets.
