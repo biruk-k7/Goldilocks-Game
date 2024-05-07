@@ -72,13 +72,8 @@ public class Villager {
         double posPlayerX = g.steve.getX();
         double posPlayerY = g.steve.getY();
         double distanceToPlayer = Math.sqrt(Math.pow(posPlayerX - position.x, 2) + Math.pow(posPlayerY - position.y, 2));
-        // System.out.println(distanceToPlayer);
-        // System.out.println(posPlayerX + " " + position.x);
-        // System.out.println(posPlayerY + " " + position.y);
 
         if(distanceToPlayer < 80){
-            // System.out.println("bruh");
-            // System.out.println(distanceToPlayer);
             prompt = true;
         }else{
             prompt = false;
