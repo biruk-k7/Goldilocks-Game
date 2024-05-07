@@ -10,7 +10,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
-public class Villager extends JPanel {
+public class Villager {
 
     public Pair position;
     public Pair velocity;
@@ -38,10 +38,6 @@ public class Villager extends JPanel {
             font = new Font("Arial", Font.PLAIN, 25); 
         }
         
-    }
-
-    public void talkTo(){
-
     }
 
     public void flipImage(){
