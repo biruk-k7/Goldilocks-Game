@@ -71,7 +71,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     }
 
     public static void playIntro() throws LineUnavailableException, IOException, UnsupportedAudioFileException{
-        File file = new File("./assets/Music/introScreen.mp3");
+        File file = new File("./assets/Music/introScreen.wav");
         AudioInputStream sound = AudioSystem.getAudioInputStream(file);
         Clip clip = AudioSystem.getClip();
         clip.open(sound);
@@ -80,7 +80,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     }
     public static void playAnimationSound()throws LineUnavailableException, IOException, UnsupportedAudioFileException{
 
-        File file = new File("WinnerSound.wav");
+        File file = new File("./assets/Music/introAnimation.wav");
         AudioInputStream sound = AudioSystem.getAudioInputStream(file);
         Clip clip = AudioSystem.getClip();
         clip.open(sound);
@@ -88,7 +88,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     }
     public static void playGoldilocksSound()throws LineUnavailableException, IOException, UnsupportedAudioFileException{
 
-        File file = new File("WinnerSound.wav");
+        File file = new File("./assets/Music/.wav");
         AudioInputStream sound = AudioSystem.getAudioInputStream(file);
         Clip clip = AudioSystem.getClip();
         clip.open(sound);
