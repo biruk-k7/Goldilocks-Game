@@ -153,7 +153,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
                         steveGame.playGoldilocksSound();
                      } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
                      }
-                     
+
                 }
                 repaint();
                 try{
@@ -162,6 +162,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
             } 
         }
     }
+
 
     //method to handle key presses
     public void keyPressed(KeyEvent e) {
@@ -204,7 +205,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         
         //handle player movemnet with key inputs
         switch (c) {
-            //moving camera and player
+            //moving camera and player, and account for upper case
             case 'w':
             case 'W':
                 steveGame.steve.stopMove(0);
