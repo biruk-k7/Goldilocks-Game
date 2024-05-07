@@ -70,8 +70,6 @@ public class IntroScreen {
         g.setFont(customFont);
         g.setColor(Color.white);
         
-
-        g.setFont(customFont);
         g2d.setColor(menuButton1);
         g2d.draw(playButton);
         g2d.setColor(Color.white);
