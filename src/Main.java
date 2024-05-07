@@ -2,6 +2,8 @@ import javax.swing.JPanel;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -10,6 +12,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Ellipse2D;
 import java.io.File;
+import java.io.IOException;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -65,6 +68,31 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         Thread mainThread = new Thread(new Runner());
         mainThread.start();
        
+    }
+
+    public static void playIntro() throws LineUnavailableException, IOException, UnsupportedAudioFileException{
+        File file = new File("./assets/Music/introScreen.mp3");
+        AudioInputStream sound = AudioSystem.getAudioInputStream(file);
+        Clip clip = AudioSystem.getClip();
+        clip.open(sound);
+        clip.start();
+
+    }
+    public static void playAnimationSound()throws LineUnavailableException, IOException, UnsupportedAudioFileException{
+
+        File file = new File("WinnerSound.wav");
+        AudioInputStream sound = AudioSystem.getAudioInputStream(file);
+        Clip clip = AudioSystem.getClip();
+        clip.open(sound);
+        clip.start();
+    }
+    public static void playGoldilocksSound()throws LineUnavailableException, IOException, UnsupportedAudioFileException{
+
+        File file = new File("WinnerSound.wav");
+        AudioInputStream sound = AudioSystem.getAudioInputStream(file);
+        Clip clip = AudioSystem.getClip();
+        clip.open(sound);
+        clip.start();
     }
 
     public static void main(String[] args){
