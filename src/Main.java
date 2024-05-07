@@ -148,7 +148,13 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
                 if(!isIntroAnimation && !isIntroScreen){
                     steveGame.updateGame(1.0 / (double)FPS); 
                 }
-
+                if(steveGame.isWinner){
+                    try {
+                        steveGame.playGoldilocksSound();
+                     } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+                     }
+                     
+                }
                 repaint();
                 try{
                     Thread.sleep(1000/FPS);
@@ -465,10 +471,7 @@ class Game{
 
         if(goldilocks.getBounds().intersects(steve.getBounds())){
             isWinner=true;
-            try {
-               playGoldilocksSound();
-            } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
-            }
+            
         }
 
         villager.updateAI(this, time);
