@@ -15,7 +15,6 @@ public class IntroScreen {
     private int width;
     private int height;
     private Image bacImage;
-    private Image star2;
 
     public Color menuButton1 = Color.white;
     public Color menuButton2 = Color.white;
@@ -44,8 +43,6 @@ public class IntroScreen {
         quitButton = new RoundRectangle2D.Double(buttonx2, buttony2,  widthBox, heightBox, 20, 50);
         bacImage = new ImageIcon("assets\\IntroScreen\\GOLDILOCKS.png").getImage();
         bacImage=bacImage.getScaledInstance(width, height, BufferedImage.SCALE_DEFAULT);
-        star2 = new ImageIcon("assets\\stars\\star2.png").getImage();
-        star2 = star2.getScaledInstance(30, 30, Image.SCALE_DEFAULT);
     }
 
     public void updateIntroScreen(){
