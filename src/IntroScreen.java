@@ -43,6 +43,7 @@ public class IntroScreen extends JPanel implements MouseListener {
         playButton = new RoundRectangle2D.Double(buttonx1, buttony1, widthBox, heightBox, 20, 50);
         quitButton = new RoundRectangle2D.Double(buttonx2, buttony2,  widthBox, heightBox, 20, 50);
         bacImage = new ImageIcon("assets\\IntroScreen\\GOLDILOCKS.png").getImage();
+        bacImage=bacImage.getScaledInstance(width, height, BufferedImage.SCALE_DEFAULT);
         star2 = new ImageIcon("assets\\stars\\star2.png").getImage();
         star2 = star2.getScaledInstance(30, 30, Image.SCALE_DEFAULT);
     }
@@ -53,7 +54,7 @@ public class IntroScreen extends JPanel implements MouseListener {
 
     public void draw(Graphics g){
         g.setColor(Color.black);
-        bacImage=bacImage.getScaledInstance(width, height, BufferedImage.SCALE_DEFAULT);
+        
         g.drawImage(bacImage, 0, 0, null);
 
         String fontFile = "GameFont.ttf";
