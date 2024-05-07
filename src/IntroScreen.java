@@ -33,9 +33,9 @@ public class IntroScreen extends JPanel implements MouseListener {
         width = WIDTH;
         height = HEIGHT;
 
-        buttonx1 =  width/2 - 200;
+        buttonx1 =  width/2 - 100;
         buttony1 =  height/2 + 100;
-        buttonx2 =  width/2 - 200;
+        buttonx2 =  width/2 - 100;
         buttony2 =  height/2 + 200;
         widthBox = 2*100;
         heightBox = 50;
@@ -53,7 +53,7 @@ public class IntroScreen extends JPanel implements MouseListener {
     public void draw(Graphics g){
         g.setColor(Color.black);
 
-        g.drawImage(bacImage, -100, 0, null);
+        g.drawImage(bacImage, 0, 0, null);
 
         String fontFile = "GameFont.ttf";
         Font customFont = null;
@@ -76,16 +76,16 @@ public class IntroScreen extends JPanel implements MouseListener {
         g2d.setColor(menuButton1);
         g2d.draw(playButton);
         g2d.setColor(Color.white);
-        g.drawString("Play", width/2 - 137,  height/2 + 133);
+        g.drawString("Play", width/2 - 37,  height/2 + 133);
         g2d.setColor(menuButton2);
         g2d.draw(quitButton);
         g.setColor(Color.white);
-        g.drawString("Quit", width/2 - 137, height/2 + 233);
+        g.drawString("Quit", width/2 - 37, height/2 + 233);
 
         //debugging tools
-        // g.setColor(Color.PINK);
-        // g.drawLine(width/2 - 100, 0, width/2 - 100, height);
-        // g.drawLine(0, height/2, width, height/2);
+        g.setColor(Color.PINK);
+        g.drawLine(width/2, 0, width/2, height);
+        g.drawLine(0, height/2, width, height/2);
         //end debugging
 
 

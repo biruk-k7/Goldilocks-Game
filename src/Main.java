@@ -259,20 +259,20 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
                     steveGame.introScreen.menuButton1 = Color.yellow;
                     steveGame.introScreen.menuButton2 = Color.white;
                     steveGame.introScreen.widthBox = 2.5*100;
-                    steveGame.introScreen.buttonx1 = Main.WIDTH/2 - 116;
+                    steveGame.introScreen.buttonx1 = Main.WIDTH/2 - 125;
                     
                 }else if(mouse_y >= HEIGHT/2 + 150 && mouse_y <= Main.HEIGHT/2 + 250){
                     steveGame.introScreen.menuButton1 = Color.white;
                     steveGame.introScreen.menuButton2 = Color.red;
                     steveGame.introScreen.widthBox = 2*100;
-                    steveGame.introScreen.buttonx1 = Main.WIDTH/2 - 200;
+                    steveGame.introScreen.buttonx1 = Main.WIDTH/2 - 100;
                     
                 }
             }else{
                 steveGame.introScreen.menuButton1 = Color.white;
                 steveGame.introScreen.menuButton2 = Color.white;
                 steveGame.introScreen.widthBox = 2*100;
-                steveGame.introScreen.buttonx1 = Main.WIDTH/2 - 200;
+                steveGame.introScreen.buttonx1 = Main.WIDTH/2 - 100;
                 
             }
         }
