@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.Font;
 import java.awt.event.*;
 import java.awt.geom.RoundRectangle2D;
+import java.awt.image.BufferedImage;
 
 
 public class IntroScreen extends JPanel implements MouseListener {
@@ -52,7 +53,7 @@ public class IntroScreen extends JPanel implements MouseListener {
 
     public void draw(Graphics g){
         g.setColor(Color.black);
-
+        bacImage=bacImage.getScaledInstance(width, height, BufferedImage.SCALE_DEFAULT);
         g.drawImage(bacImage, 0, 0, null);
 
         String fontFile = "GameFont.ttf";
@@ -82,11 +83,11 @@ public class IntroScreen extends JPanel implements MouseListener {
         g.setColor(Color.white);
         g.drawString("Quit", width/2 - 37, height/2 + 233);
 
-        //debugging tools
-        g.setColor(Color.PINK);
-        g.drawLine(width/2, 0, width/2, height);
-        g.drawLine(0, height/2, width, height/2);
-        //end debugging
+        // //debugging tools
+        // g.setColor(Color.PINK);
+        // g.drawLine(width/2, 0, width/2, height);
+        // g.drawLine(0, height/2, width, height/2);
+        // //end debugging
 
 
     }
