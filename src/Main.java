@@ -169,8 +169,6 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
             case 'F':
               steveGame.steve.refuel();
               break;
-            
-
         }
     }
     
