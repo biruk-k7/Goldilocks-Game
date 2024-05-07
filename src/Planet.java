@@ -8,7 +8,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
+import java.util.random.*;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import java.util.Iterator;
@@ -312,13 +312,23 @@ class Asteroid extends SpaceObject implements Movable{
 }
 
 class Goldilocks extends Planet{
-    private int gold;
-    private int water;
-    private int fossilfuels;
 
-    public Goldilocks(int r){
-        super(r);
+    private Image goldilocksPlanet;
+    private Image alien;
+    
 
+    public Goldilocks(){
+        super(10);
+        goldilocksPlanet = new ImageIcon("assets\\GoldilocksPlanet\\goldilocksPlanet.png").getImage().getScaledInstance(800, 800, Image.SCALE_DEFAULT);
+        int mult1 = (Math.random()>.5) ? 1: -1;
+        int mult2 = (Math.random()>.5) ? 1: -1;
+        pos.x = mult1*(Math.random()*1000 + 2000);
+        pos.y = mult2*(Math.random()*1000 + 2000);
+        bounds = new Rectangle((int)pos.x+150, (int)pos.y+150, 550,550);
+    }
+
+    public void draw(Graphics g){
+        g.drawImage(goldilocksPlanet, (int)pos.x, (int)pos.y, null);
     }
 
 }
@@ -347,12 +357,12 @@ class StarterPlanet extends Planet {
 
         castle = new ImageIcon("assets\\StarterPlanet\\castle.png").getImage();
         castle = castle.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+        this.bounds=new Rectangle(-250,-250,500,500);
 
     }
-
-    public void drawStarterPlanet(Graphics g){
+    @Override
+    public void draw(Graphics g){
         g.drawImage(castle, -105, -400, null);
-        
         g.drawImage(starterPlanet,-250 ,-250, null);
         animateCloud(g); 
     }
@@ -398,10 +408,6 @@ class StarterPlanet extends Planet {
             }
         }
     }
-
-
-
-    
     
 }
 

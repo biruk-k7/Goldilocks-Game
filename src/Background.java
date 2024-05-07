@@ -57,7 +57,7 @@ public class Background {
         float radius = WIDTH/2;
         float[] dist = {0.0f, 0.2f, 1.0f};
         Color[] colors = {new Color(24, 5, 39), new Color(17, 3, 31), Color.black};
-        RadialGradientPaint p = new RadialGradientPaint(center, radius, dist, colors, CycleMethod.REPEAT);
+        RadialGradientPaint p = new RadialGradientPaint(center, radius, dist, colors, CycleMethod.NO_CYCLE);
 
         g.setPaint(p);
 
