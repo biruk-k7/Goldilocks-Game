@@ -25,7 +25,6 @@ public class Outro{
     
 
     public Outro(int WIDTH, int HEIGHT){
-
         this.width = WIDTH;
         this.height = HEIGHT;
         this.continueCounter = 0;
@@ -80,7 +79,7 @@ public class Outro{
                 File file = new File("./assets/planets/planet"+i+".png");
                 file.delete();
             }
-            System.exit(1);
+            System.exit(0);
         }
 
     }
