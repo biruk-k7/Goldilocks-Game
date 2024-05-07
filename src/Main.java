@@ -46,8 +46,12 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     //field to represent the game
     Game steveGame;
 
-    //music variables
- 
+    //music files 
+    File fileMenu;
+    File fileAnimation;
+    File fileGame;
+    Clip clip;
+
 
     public Main(){
         //get dimensions for the screen
@@ -68,33 +72,48 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         Thread mainThread = new Thread(new Runner());
         mainThread.start();
        
+        try { 
+            initMusic();
+        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+        }
+        stopSound();
+        try {
+            playIntro();
+        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+        }
+       
     }
 
-    public static void playIntro() throws LineUnavailableException, IOException, UnsupportedAudioFileException{
-        File file = new File("./assets/Music/introScreen.wav");
-        AudioInputStream sound = AudioSystem.getAudioInputStream(file);
-        Clip clip = AudioSystem.getClip();
-        clip.open(sound);
+    public void initMusic()throws LineUnavailableException, IOException, UnsupportedAudioFileException{
+        fileMenu= new File("./assets/Music/introScreen.wav");
+        fileAnimation = new File("./assets/Music/introAnimation.wav");
+        fileGame = new File("./assets/Music/track1.wav");
+        clip = AudioSystem.getClip();
+    }
+    public void stopSound(){
+        clip.stop();
+        // clip.flush();
+    }
+    public void playIntro() throws LineUnavailableException, IOException, UnsupportedAudioFileException{
+        AudioInputStream soundMenu = AudioSystem.getAudioInputStream(fileMenu);
+        clip = AudioSystem.getClip();
+        clip.open(soundMenu);
         clip.start();
 
     }
-    public static void playAnimationSound()throws LineUnavailableException, IOException, UnsupportedAudioFileException{
-
-        File file = new File("./assets/Music/introAnimation.wav");
-        AudioInputStream sound = AudioSystem.getAudioInputStream(file);
-        Clip clip = AudioSystem.getClip();
-        clip.open(sound);
+    public void playAnimationSound()throws LineUnavailableException, IOException, UnsupportedAudioFileException{
+        AudioInputStream soundAnimation = AudioSystem.getAudioInputStream(fileAnimation);
+        clip = AudioSystem.getClip();
+        clip.open(soundAnimation);
         clip.start();
     }
-    public static void playGoldilocksSound()throws LineUnavailableException, IOException, UnsupportedAudioFileException{
-
-        File file = new File("./assets/Music/.wav");
-        AudioInputStream sound = AudioSystem.getAudioInputStream(file);
-        Clip clip = AudioSystem.getClip();
-        clip.open(sound);
-        clip.start();
+    public void playGameSound()throws LineUnavailableException, IOException, UnsupportedAudioFileException{
+        AudioInputStream soundGame = AudioSystem.getAudioInputStream(fileGame);
+        clip = AudioSystem.getClip();
+        clip.open(soundGame);
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
     }
-
+    
     public static void main(String[] args){
 
         //basic game setup
@@ -214,6 +233,12 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
 
             if(steveGame.introAnimation.continueCounter == 9){
                 isIntroAnimation = false;
+                stopSound();
+                try {
+                    playGameSound();
+                } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e1) {
+                
+                }
             }
         }
     }
@@ -233,6 +258,12 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
                 if(mouse_y >= Main.HEIGHT/2 + 50 && mouse_y <= Main.HEIGHT/2 + 150){
                     isIntroScreen = false;
                     isIntroAnimation = true;
+                    stopSound();
+                    try {
+                        playAnimationSound();
+                    } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e1) {
+        
+                    }
                     
                 }else if(mouse_y >= Main.HEIGHT/2 + 150 && mouse_y <= Main.HEIGHT/2 + 250){
                     System.exit(1);
@@ -344,6 +375,10 @@ class Game{
     public ArrayList<Asteroid> asteroids;
     public Goldilocks goldilocks;
     public boolean isWinner;
+
+    //music files 
+    File file = new File("./assets/Music/track2.wav");
+    Clip clip;
     
 
     public Game(){
@@ -409,6 +444,14 @@ class Game{
         return false;
     }
 
+    public void playGoldilocksSound()throws LineUnavailableException, IOException, UnsupportedAudioFileException{
+        AudioInputStream soundWinner = AudioSystem.getAudioInputStream(file);
+        clip = AudioSystem.getClip();
+        clip.open(soundWinner);
+        clip.start();
+    }
+
+
     public ArrayList<Asteroid> initAsteroids(int n){
         ArrayList<Asteroid> a = new ArrayList<Asteroid>();
         for (int i=0; i<n; i++){
@@ -422,6 +465,10 @@ class Game{
 
         if(goldilocks.getBounds().intersects(steve.getBounds())){
             isWinner=true;
+            try {
+               playGoldilocksSound();
+            } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+            }
         }
 
         villager.updateAI(this, time);
