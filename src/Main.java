@@ -250,6 +250,10 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
                     }
                     
                 }else if(mouse_y >= Main.HEIGHT/2 + 150 && mouse_y <= Main.HEIGHT/2 + 250){
+                    for (int i =1; i<=Planet.getNumPlanets(); i++){
+                        File file = new File("./assets/planets/planet"+i+".png");
+                        file.delete();
+                    }
                     System.exit(1);
                 }
             }
