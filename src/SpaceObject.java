@@ -7,6 +7,7 @@ public abstract class SpaceObject {
     public int radius;
     public  Pair pos;
     public Pair vel;
+    public Pair accel;
     Rectangle bounds;
     Image texture;
     
@@ -31,6 +32,9 @@ public abstract class SpaceObject {
         return vel;
     }
 
+    public Pair getAccel(){
+        return accel;
+    }
 
     public void setPos(Pair a){
         pos = a;
@@ -41,6 +45,9 @@ public abstract class SpaceObject {
         vel = v;
     }
 
+    public void setAccel(Pair a){
+        accel = a;
+    }
 
     public Pair getCenter(){
 
