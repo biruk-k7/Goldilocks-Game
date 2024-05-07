@@ -317,6 +317,8 @@ class Goldilocks extends Planet{
         velocityX = 1;
         pos.x = mult1*(Math.random()*1000 + 2000);
         pos.y = mult2*(Math.random()*1000 + 2000);
+        pos.x=0;
+        pos.y=0;
         cloudX1 = (int)(pos.x + 100);
         bounds = new Rectangle((int)pos.x+150, (int)pos.y+150, 550,550);
 

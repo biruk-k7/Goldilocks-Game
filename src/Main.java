@@ -124,6 +124,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         frame.setBackground(Color.BLACK);
         frame.pack();
         frame.setVisible(true);
+        frame.setResizable(false);
 
         //https://stackoverflow.com/questions/10468149/jframe-on-close-operation 
         //clear planet files on close
@@ -148,12 +149,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
                 if(!isIntroAnimation && !isIntroScreen){
                     steveGame.updateGame(1.0 / (double)FPS); 
                 }
-                if(steveGame.isWinner){
-                    try {
-                        steveGame.playGoldilocksSound();
-                     } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
-                     }
-                }
+                
                 repaint();
                 try{
                     Thread.sleep(1000/FPS);
@@ -247,6 +243,20 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
                 }
             }
         }
+
+        if(steveGame.isWinner){
+            if(steveGame.outro.continueCounter == 0){
+                stopSound();
+                try {
+                    steveGame.playGoldilocksSound();
+                } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e1) {
+                
+                }
+            }
+            if(c == 'k' || c == 'K'){
+                steveGame.outro.continueCounter++;
+            }
+        }
     }
     
     public void addNotify() {
@@ -307,7 +317,8 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         
         if(isIntroScreen){steveGame.introScreen.draw(g);}
         else if(!isIntroScreen && isIntroAnimation){steveGame.introAnimation.draw(g);}
-        else if(!isIntroAnimation && !isIntroScreen){
+        else if(!isIntroAnimation && !isIntroScreen && !steveGame.isWinner){
+            
             //draw the screen and the player
             super.paintComponent(g); 
             Graphics2D g2d = (Graphics2D) g;
@@ -319,8 +330,8 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
             steveGame.background.drawBackground(g);
             steveGame.drawPlayers(g);
         }
-        else if(steveGame.isWinner){
-            steveGame.out
+        else if (steveGame.isWinner){
+            steveGame.outro.draw(g);
         }
         
     }
@@ -403,7 +414,7 @@ class Game{
         planets.add(new StarterPlanet());
         asteroids = initAsteroids(200);
         isWinner=false;
-        
+        outro=new Outro(Main.WIDTH, Main.HEIGHT);
 
 
     
