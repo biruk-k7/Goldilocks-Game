@@ -83,29 +83,7 @@ public class IntroScreen extends JPanel implements MouseListener {
         g2d.draw(quitButton);
         g.setColor(Color.white);
         g.drawString("Quit", width/2 - 37, height/2 + 233);
-
-        // //debugging tools
-        // g.setColor(Color.PINK);
-        // g.drawLine(width/2, 0, width/2, height);
-        // g.drawLine(0, height/2, width, height/2);
-        // //end debugging
-
-
     }
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -132,7 +110,4 @@ public class IntroScreen extends JPanel implements MouseListener {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'mouseExited'");
     }
-
-
-    
 }
