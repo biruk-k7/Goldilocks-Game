@@ -111,21 +111,25 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         if(steveGame.steve.getFuel() > 1){
             switch (c) {
                 case 'w':
+                case 'W':
                     steveGame.steve.move(0);
                     steveGame.cam.move(0);
                     if(steveGame.steve.getIsSpaceShip()) steveGame.rotate=0;
                     break;
                 case 'a':
+                case 'A':
                     steveGame.steve.move(1);
                     steveGame.cam.move(1);
                     if(steveGame.steve.getIsSpaceShip()) steveGame.rotate=-90;
                     break;
                 case 's':
+                case 'S':
                     steveGame.steve.move(2);
                     steveGame.cam.move(2);
                     if(steveGame.steve.getIsSpaceShip()) steveGame.rotate=180;
                     break;
                 case 'd':
+                case 'D':
                     steveGame.steve.move(3);
                     steveGame.cam.move(3);
                     if(steveGame.steve.getIsSpaceShip()) steveGame.rotate=90;
@@ -137,27 +141,35 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     //method to handle what happens when a key is released
     public void keyReleased(KeyEvent e) {
         char c=e.getKeyChar();
+        
         //handle player movemnet with key inputs
         switch (c) {
             //moving camera and player
             case 'w':
+            case 'W':
                 steveGame.steve.stopMove(0);
                 steveGame.cam.stopMove(0);
                 break;
             case 'a':
+            case 'A':
                 steveGame.steve.stopMove(1);
                 steveGame.cam.stopMove(1);
                 break;
             case 's':
+            case 'S':
                 steveGame.steve.stopMove(2);
                 steveGame.cam.stopMove(2);
                 break;
             case 'd':
+            case 'D':
                 steveGame.steve.stopMove(3);
                 steveGame.cam.stopMove(3);
                 break;
             case 'f':
+            case 'F':
               steveGame.steve.refuel();
+              break;
+            
 
         }
     }
@@ -167,7 +179,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     	char c = e.getKeyChar();
 
         if(isIntroAnimation){
-            if(c == 'k'){
+            if(c == 'k' || c=='K'){
                 steveGame.introAnimation.continueCounter++;
             }
 

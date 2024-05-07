@@ -52,7 +52,6 @@ public class Planet extends SpaceObject{
     public Planet(int initRadius){
         pos = new Pair();
         vel = new Pair();
-        accel=new Pair();
         radius = initRadius;
         planetType=(int)(Math.random()*6);
         //if earth is the planet
@@ -283,16 +282,8 @@ class Asteroid extends SpaceObject implements Movable{
              
 
             }
-        }
-
-    
-        
-            
-              
-     }
-    
-
-
+        }        
+    }
 
     @Override
     public void move(int dir) {
@@ -314,19 +305,56 @@ class Goldilocks extends Planet{
 
     private Image goldilocksPlanet;
     private Image villager;
+    private Image cloud1;
+    private  int cloudX1;
+    private int velocityX;
 
     public Goldilocks(){
         super(10);
         goldilocksPlanet = new ImageIcon("assets\\GoldilocksPlanet\\goldilocksPlanet.png").getImage().getScaledInstance(800, 800, Image.SCALE_DEFAULT);
         int mult1 = (Math.random()>.5) ? 1: -1;
         int mult2 = (Math.random()>.5) ? 1: -1;
+        velocityX = 1;
         pos.x = mult1*(Math.random()*1000 + 2000);
         pos.y = mult2*(Math.random()*1000 + 2000);
+        pos.x = 0;
+        pos.y = 0;
+        cloudX1 = (int)(pos.x + 100);
         bounds = new Rectangle((int)pos.x+150, (int)pos.y+150, 550,550);
+
+        cloud1 = new ImageIcon("assets\\StarterPlanet\\cloud1.png").getImage();
+        cloud1 = cloud1.getScaledInstance(600, 600, Image.SCALE_DEFAULT);
+
+
     }
 
     public void draw(Graphics g){
         g.drawImage(goldilocksPlanet, (int)pos.x, (int)pos.y, null);
+        animateCloud(g);
+    }
+
+    public void animateCloud(Graphics g){
+
+        // Moving cloud 1 to the right until it collides with a certain point
+
+        if(velocityX > 0){
+            if (cloudX1 < pos.x+300) {
+                cloudX1 += velocityX;
+                g.drawImage(cloud1, cloudX1, (int)(pos.y+150), null);
+            } else {
+                velocityX = -velocityX;
+                g.drawImage(cloud1, cloudX1 - 1, (int)(pos.y+150), null);
+            }
+        }else if(velocityX < 0){
+            if (cloudX1 > pos.x+100) {
+                cloudX1 += velocityX;
+                g.drawImage(cloud1, cloudX1, (int)(pos.y+150), null);
+            } else {
+                velocityX = -velocityX;
+                g.drawImage(cloud1, cloudX1 + 1, (int)(pos.y+150), null);
+            }
+        }
+        
     }
 
 }
