@@ -1,4 +1,7 @@
 import javax.swing.JPanel;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -40,6 +43,9 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     //field to represent the game
     Game steveGame;
 
+    //music variables
+ 
+
     public Main(){
         //get dimensions for the screen
         screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -58,6 +64,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         //start thread
         Thread mainThread = new Thread(new Runner());
         mainThread.start();
+       
     }
 
     public static void main(String[] args){
@@ -165,15 +172,6 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
                 steveGame.steve.stopMove(3);
                 steveGame.cam.stopMove(3);
                 break;
-<<<<<<< HEAD
-            case 'f':
-            case 'F':
-              steveGame.steve.refuel();
-              break;
-=======
-            
-
->>>>>>> 10993ce9bbce5e218fbf93201b20fd2cb52d41a7
         }
     }
     
@@ -318,6 +316,7 @@ class Game{
     public ArrayList<Asteroid> asteroids;
     public Goldilocks goldilocks;
     public boolean isWinner;
+    
 
     public Game(){
 
@@ -331,6 +330,8 @@ class Game{
         planets.add(new StarterPlanet());
         asteroids = initAsteroids(200);
         isWinner=false;
+        
+
 
     
        
@@ -393,7 +394,6 @@ class Game{
 
         if(goldilocks.getBounds().intersects(steve.getBounds())){
             isWinner=true;
-            System.out.println("you win");
         }
 
         villager.updateAI(this, time);
