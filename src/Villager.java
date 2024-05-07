@@ -10,7 +10,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
-public class Villager {
+public class Villager extends JPanel {
 
     public Pair position;
     public Pair velocity;
@@ -38,6 +38,10 @@ public class Villager {
             font = new Font("Arial", Font.PLAIN, 25); 
         }
         
+    }
+
+    public void talkTo(){
+
     }
 
     public void flipImage(){
@@ -72,8 +76,13 @@ public class Villager {
         double posPlayerX = g.steve.getX();
         double posPlayerY = g.steve.getY();
         double distanceToPlayer = Math.sqrt(Math.pow(posPlayerX - position.x, 2) + Math.pow(posPlayerY - position.y, 2));
+        // System.out.println(distanceToPlayer);
+        // System.out.println(posPlayerX + " " + position.x);
+        // System.out.println(posPlayerY + " " + position.y);
 
         if(distanceToPlayer < 80){
+            // System.out.println("bruh");
+            // System.out.println(distanceToPlayer);
             prompt = true;
         }else{
             prompt = false;
@@ -94,7 +103,6 @@ public class Villager {
             g.setColor(Color.black);
             g.drawString("Hello", (int) position.x + 27, (int) position.y + 10);
             g.drawString("Young One",(int) position.x + 27, (int) position.y + 30);
-           
         }
 
 
