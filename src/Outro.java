@@ -76,6 +76,10 @@ public class Outro{
         }
 
         if(continueCounter == 5){
+            for (int i =1; i<=Planet.getNumPlanets(); i++){
+                File file = new File("./assets/planets/planet"+i+".png");
+                file.delete();
+            }
             System.exit(1);
         }
 

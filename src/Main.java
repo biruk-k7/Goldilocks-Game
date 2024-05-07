@@ -50,6 +50,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     File fileMenu;
     File fileAnimation;
     File fileGame;
+    File fileGoldilocks;
     Clip clip;
 
 
@@ -88,6 +89,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         fileMenu= new File("./assets/Music/introScreen.wav");
         fileAnimation = new File("./assets/Music/introAnimation.wav");
         fileGame = new File("./assets/Music/track1.wav");
+        fileGoldilocks = new File("./assets/Music/track2.wav");
         clip = AudioSystem.getClip();
     }
     public void stopSound(){
@@ -112,6 +114,12 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         clip = AudioSystem.getClip();
         clip.open(soundGame);
         clip.loop(Clip.LOOP_CONTINUOUSLY);
+    }
+    public void playGoldilocksSound()throws LineUnavailableException, IOException, UnsupportedAudioFileException{
+        AudioInputStream soundWinner = AudioSystem.getAudioInputStream(fileGoldilocks);
+        clip = AudioSystem.getClip();
+        clip.open(soundWinner);
+        clip.start();
     }
     
     public static void main(String[] args){
@@ -248,7 +256,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
             if(steveGame.outro.continueCounter == 0){
                 stopSound();
                 try {
-                    steveGame.playGoldilocksSound();
+                    playGoldilocksSound();
                 } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e1) {
                 
                 }
@@ -397,9 +405,7 @@ class Game{
     public boolean isWinner;
     public Outro outro;
 
-    //music files 
-    File file = new File("./assets/Music/track2.wav");
-    Clip clip;
+    
     
 
     public Game(){
@@ -463,13 +469,6 @@ class Game{
             }
         }
         return false;
-    }
-
-    public void playGoldilocksSound()throws LineUnavailableException, IOException, UnsupportedAudioFileException{
-        AudioInputStream soundWinner = AudioSystem.getAudioInputStream(file);
-        clip = AudioSystem.getClip();
-        clip.open(soundWinner);
-        clip.start();
     }
 
 
