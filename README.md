@@ -6,7 +6,6 @@ The goal of the game is to find "Goldilocks", a golden planet that was once lost
 To compile and run the program, type:
 javac *.java
 java Main
+in the terminal. No command line arguments needed.
 
-in the terminal; no command line arguments needed.
-
-After running it, the usage of the program is pretty simple. To control the spaceship, use WASD keys (w: move up, s: move down, d: move right, a: move left). Aim with your mouse and left click in a direction to shoot bullets.
+To control the spaceship, use WASD keys (w: move up, s: move down, d: move right, a: move left). Aim with your mouse and left click in a direction to shoot bullets.
