@@ -12,6 +12,7 @@ in the terminal. No command line arguments needed.
 
 To control the spaceship, use WASD keys (w: move up, s: move down, d: move right, a: move left). Aim with your mouse and left click in a direction to shoot bullets.
 
+<p align="center">
 You can view a video demonstration of the game below:
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=rhNE35C7s5U
