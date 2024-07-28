@@ -2,6 +2,7 @@
 
 ![frame goldilocks preview](https://github.com/user-attachments/assets/180f3cd0-25ad-4033-a1d0-043e9cc15961)
 
+## About the game
 Goldilocks is a game that has a "infinite" (i.e reality really big) 2D universe where you control the spaceship. The game uses procedural world generation with noise maps (we use simplex noise) to generate planet locations, their textures, and the world. The planets are all generated at once at the execution of the program. During runtime, the program will render the planets based on their distance from the player's spaceship.
 
 The goal of the game is to find "Goldilocks", a golden planet that was once lost to time. It will be found within the assortment of the procedurally generated worlds, and your goal is to destroy asteroids to get fuel for your spaceship. You can destroy asteroids to get fuel by clicking anywhere on the screen to shoot bullets.
