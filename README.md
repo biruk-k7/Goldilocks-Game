@@ -1,5 +1,5 @@
 # Goldilocks: A 2D Game with Procedurally Generated World
-[Untitled presentation.pdf](https://github.com/user-attachments/files/16402200/Untitled.presentation.pdf)
+![frame goldilocks preview](https://github.com/user-attachments/assets/180f3cd0-25ad-4033-a1d0-043e9cc15961)
 
 Goldilocks is a game that has a "infinite" (i.e reality really big) 2D universe where you control the spaceship. The game uses procedural world generation with noise maps (we use simplex noise) to generate planet locations, their textures, and the world. The planets are all generated at once at the execution of the program. During runtime, the program will render the planets based on their distance from the player's spaceship.
 
