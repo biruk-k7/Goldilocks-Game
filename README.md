@@ -11,3 +11,5 @@ java Main
 in the terminal. No command line arguments needed.
 
 To control the spaceship, use WASD keys (w: move up, s: move down, d: move right, a: move left). Aim with your mouse and left click in a direction to shoot bullets.
+
+You can view a video demonstration of the game [here](https://youtu.be/rhNE35C7s5U).
