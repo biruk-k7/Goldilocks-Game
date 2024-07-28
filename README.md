@@ -1,4 +1,4 @@
-# Goldilocks: A 2D Game with Procedurally Generated World
+## Goldilocks: A 2D Game with Procedurally Generated World
 
 ![frame goldilocks preview](https://github.com/user-attachments/assets/180f3cd0-25ad-4033-a1d0-043e9cc15961)
 
