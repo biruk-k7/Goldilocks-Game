@@ -20,5 +20,5 @@ You can view a video demonstration of the game below:
 " target="_blank"><img src="http://img.youtube.com/vi/rhNE35C7s5U/0.jpg" 
 alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
-##License
+## License
 Copyright 2023-24 Sergei Leonov, Bilal Tariq, Andrew Palena, Biruk Tefera
