@@ -7,10 +7,13 @@ Goldilocks is a game that has a "infinite" (i.e reality really big) 2D universe 
 
 The goal of the game is to find "Goldilocks", a golden planet that was once lost to time. It will be found within the assortment of the procedurally generated worlds, and your goal is to destroy asteroids to get fuel for your spaceship. You can destroy asteroids to get fuel by clicking anywhere on the screen to shoot bullets.
 
-To compile and run the program, type:
+To compile and run the program, in the terminal, type:
+
 javac *.java
+
 java Main
-in the terminal. No command line arguments needed.
+
+No command line arguments needed.
 
 To control the spaceship, use WASD keys (w: move up, s: move down, d: move right, a: move left). Aim with your mouse and left click in a direction to shoot bullets.
 
